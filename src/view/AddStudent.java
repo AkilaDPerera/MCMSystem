@@ -21,6 +21,11 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.EtchedBorder;
 
 public class AddStudent extends JFrame {
 	private JTextField textField;
@@ -64,7 +69,7 @@ public class AddStudent extends JFrame {
 	 */
 	public AddStudent() {
 		setTitle("Add Student");
-		setBounds(100, 100, 500, 660);
+		setBounds(100, 100, 500, 719);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
@@ -199,85 +204,91 @@ public class AddStudent extends JFrame {
 		bg.add(rdbtnNewRadioButton_1);
 		bg.add(rdbtnNewRadioButton);
 		
-		Panel panel_1 = new Panel();
-		panel_1.setBounds(12, 399, 458, 206);
-		getContentPane().add(panel_1);
-		panel_1.setLayout(null);
-		panel_1.setEnabled(true);
+		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.setBounds(188, 625, 97, 25);
+		getContentPane().add(btnSubmit);
 		
-		textField_9 = new JTextField();
-		textField_9.setBounds(47, 45, 164, 22);
-		panel_1.add(textField_9);
-		textField_9.setColumns(10);
-		
-		textField_10 = new JTextField();
-		textField_10.setBounds(47, 105, 164, 22);
-		panel_1.add(textField_10);
-		textField_10.setColumns(10);
-		
-		textField_11 = new JTextField();
-		textField_11.setBounds(272, 45, 95, 22);
-		panel_1.add(textField_11);
-		textField_11.setColumns(10);
-		
-		JLabel lblMothersName = new JLabel("Mother's name");
-		lblMothersName.setBounds(33, 30, 95, 16);
-		panel_1.add(lblMothersName);
-		
-		JLabel lblContactNumber = new JLabel("Contact Number");
-		lblContactNumber.setBounds(272, 16, 108, 16);
-		panel_1.add(lblContactNumber);
-		
-		JLabel lblFathersName = new JLabel("Father's name");
-		lblFathersName.setBounds(33, 90, 95, 16);
-		panel_1.add(lblFathersName);
-		
-		textField_12 = new JTextField();
-		textField_12.setBounds(270, 105, 95, 22);
-		panel_1.add(textField_12);
-		textField_12.setColumns(10);
-		
-		JLabel lblGuardiansName = new JLabel("Guardian's name");
-		lblGuardiansName.setBounds(33, 140, 118, 16);
-		panel_1.add(lblGuardiansName);
-		
-		textField_13 = new JTextField();
-		textField_13.setBounds(47, 156, 164, 22);
-		panel_1.add(textField_13);
-		textField_13.setColumns(10);
-		
-		textField_14 = new JTextField();
-		textField_14.setBounds(270, 156, 95, 22);
-		panel_1.add(textField_14);
-		textField_14.setColumns(10);
-		panel_1.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{textField_9, textField_11, lblMothersName, textField_10, textField_12, textField_13, textField_14, lblContactNumber, lblFathersName, lblGuardiansName}));
-		
-		Panel panel = new Panel();
-		panel.setBounds(12, 399, 458, 206);
+		JPanel panel = new JPanel();
+		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		panel.setBounds(12, 402, 458, 206);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		panel.setVisible(false);
 		panel.setEnabled(false);
 		
 		JLabel lblFamilyId = new JLabel("Family id*");
-		lblFamilyId.setBounds(133, 88, 74, 16);
+		lblFamilyId.setBounds(125, 91, 59, 16);
 		panel.add(lblFamilyId);
 		
 		textField_8 = new JTextField();
-		textField_8.setBounds(212, 85, 116, 22);
+		textField_8.setBounds(218, 88, 116, 22);
 		panel.add(textField_8);
 		textField_8.setColumns(10);
-		panel.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{textField_8, lblFamilyId}));
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		panel_1.setBounds(12, 402, 458, 206);
+		getContentPane().add(panel_1);
+		panel_1.setLayout(null);
+		panel_1.setEnabled(true);
+		
+		JLabel lblMothersName = new JLabel("Mother's name");
+		lblMothersName.setBounds(39, 26, 95, 16);
+		panel_1.add(lblMothersName);
+		
+		textField_9 = new JTextField();
+		textField_9.setBounds(49, 41, 164, 22);
+		panel_1.add(textField_9);
+		textField_9.setColumns(10);
+		
+		JLabel lblFathersName = new JLabel("Father's name");
+		lblFathersName.setBounds(39, 76, 95, 16);
+		panel_1.add(lblFathersName);
+		
+		textField_10 = new JTextField();
+		textField_10.setBounds(49, 90, 164, 22);
+		panel_1.add(textField_10);
+		textField_10.setColumns(10);
+		
+		JLabel lblGuardiansName = new JLabel("Guardian's name");
+		lblGuardiansName.setBounds(39, 125, 118, 16);
+		panel_1.add(lblGuardiansName);
+		
+		textField_13 = new JTextField();
+		textField_13.setBounds(49, 140, 164, 22);
+		panel_1.add(textField_13);
+		textField_13.setColumns(10);
+		
+		JLabel lblContactNumber = new JLabel("Contact Number");
+		lblContactNumber.setBounds(274, 13, 108, 16);
+		panel_1.add(lblContactNumber);
+		
+		textField_11 = new JTextField();
+		textField_11.setBounds(274, 41, 95, 22);
+		panel_1.add(textField_11);
+		textField_11.setColumns(10);
+		
+		textField_12 = new JTextField();
+		textField_12.setBounds(274, 90, 95, 22);
+		panel_1.add(textField_12);
+		textField_12.setColumns(10);
+		
+		textField_14 = new JTextField();
+		textField_14.setBounds(274, 140, 95, 22);
+		panel_1.add(textField_14);
+		textField_14.setColumns(10);
 		getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblMobileNumber_2, textField, textField_1, comboBox, lblAddStudent, txtDd, txtMm, lblLastName, txtYyyy, lblAddressLine, textField_2, textField_3, lblAddressLine_1, textField_4, lblAddressLine_2, textField_5, lblMobileNumber, textField_6, lblMobileNumber_1, textField_7, lblGender, lblDateOfBirth, label, label_1, lblNewLabel}));
 		
 
 
 		rdbtnNewRadioButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				panel.setVisible(false);
-				panel.setEnabled(false);
 				panel_1.setVisible(true);
 				panel_1.setEnabled(true);
+				panel.setVisible(false);
+				panel.setEnabled(false);
+				
+				
 			}
 		});
 		
