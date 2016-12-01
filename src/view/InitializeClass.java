@@ -84,11 +84,6 @@ public class InitializeClass extends JFrame {
 		lblTeacher.setBounds(12, 67, 56, 16);
 		contentPane.add(lblTeacher);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"should filled with teacher coming from db"}));
-		comboBox_2.setBounds(92, 64, 124, 22);
-		contentPane.add(comboBox_2);
-		
 		JLabel lblType = new JLabel("Type");
 		lblType.setBounds(12, 223, 56, 16);
 		contentPane.add(lblType);
@@ -181,6 +176,40 @@ public class InitializeClass extends JFrame {
 		lblRs.setBounds(92, 436, 23, 16);
 		contentPane.add(lblRs);
 		
+		JPanel panel_induvidual = new JPanel();
+		panel_induvidual.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
+		panel_induvidual.setBounds(200, 159, 246, 141);
+		contentPane.add(panel_induvidual);
+		panel_induvidual.setLayout(null);
+		
+		JLabel lblStudent = new JLabel("Student :");
+		lblStudent.setBounds(12, 57, 56, 16);
+		panel_induvidual.add(lblStudent);
+		
+		JLabel lblLocation_1 = new JLabel("Address :");
+		lblLocation_1.setBounds(12, 86, 56, 16);
+		panel_induvidual.add(lblLocation_1);
+		
+		txtLine = new JTextField();
+		txtLine.setText("line 1");
+		txtLine.setBounds(80, 83, 154, 22);
+		panel_induvidual.add(txtLine);
+		txtLine.setColumns(10);
+		
+		txtLineoptional = new JTextField();
+		txtLineoptional.setText("line 2 (optional)");
+		txtLineoptional.setBounds(80, 106, 154, 22);
+		panel_induvidual.add(txtLineoptional);
+		txtLineoptional.setColumns(10);
+		
+		JButton btnNewButton = new JButton("Select Student");
+		btnNewButton.setBounds(12, 19, 222, 25);
+		panel_induvidual.add(btnNewButton);
+		
+		JLabel lblStdName = new JLabel("Std name | ID");
+		lblStdName.setBounds(80, 57, 154, 16);
+		panel_induvidual.add(lblStdName);
+		
 		JPanel panel_group = new JPanel();
 		panel_group.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		panel_group.setVisible(false);
@@ -208,39 +237,17 @@ public class InitializeClass extends JFrame {
 		txtOldGym.setText("Old gym");
 		txtOldGym.setColumns(10);
 		
-		JPanel panel_induvidual = new JPanel();
-		panel_induvidual.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
-		panel_induvidual.setBounds(200, 159, 246, 141);
-		contentPane.add(panel_induvidual);
-		panel_induvidual.setLayout(null);
+		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.setBounds(199, 477, 97, 25);
+		contentPane.add(btnSubmit);
 		
-		JComboBox comboBox_5 = new JComboBox();
-		comboBox_5.setBounds(80, 13, 154, 22);
-		panel_induvidual.add(comboBox_5);
+		JButton btnNewButton_1 = new JButton("Select Teacher");
+		btnNewButton_1.setBounds(92, 63, 124, 25);
+		contentPane.add(btnNewButton_1);
 		
-		JLabel lblStudent = new JLabel("Student :");
-		lblStudent.setBounds(12, 16, 56, 16);
-		panel_induvidual.add(lblStudent);
-		
-		JLabel lblLocation_1 = new JLabel("Address :");
-		lblLocation_1.setBounds(12, 51, 56, 16);
-		panel_induvidual.add(lblLocation_1);
-		
-		txtLine = new JTextField();
-		txtLine.setText("line 1");
-		txtLine.setBounds(80, 48, 154, 22);
-		panel_induvidual.add(txtLine);
-		txtLine.setColumns(10);
-		
-		txtLineoptional = new JTextField();
-		txtLineoptional.setText("line 2 (optional)");
-		txtLineoptional.setBounds(80, 71, 154, 22);
-		panel_induvidual.add(txtLineoptional);
-		txtLineoptional.setColumns(10);
-		
-		JButton btnNewButton = new JButton("Add new student");
-		btnNewButton.setBounds(12, 106, 222, 25);
-		panel_induvidual.add(btnNewButton);
+		JLabel lblNewLabel = new JLabel("Teacher name | ID");
+		lblNewLabel.setBounds(228, 67, 218, 16);
+		contentPane.add(lblNewLabel);
 		
 		comboBox_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
