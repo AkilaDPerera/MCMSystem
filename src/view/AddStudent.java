@@ -78,21 +78,21 @@ public class AddStudent extends JFrame {
 		getContentPane().add(lblAddStudent);
 		
 		textField = new JTextField();
-		textField.setBounds(192, 50, 164, 22);
+		textField.setBounds(101, 42, 164, 22);
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("First Name*");
-		lblNewLabel.setBounds(85, 53, 95, 16);
+		lblNewLabel.setBounds(12, 45, 77, 16);
 		getContentPane().add(lblNewLabel);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(192, 85, 164, 22);
+		textField_1.setBounds(101, 77, 164, 22);
 		getContentPane().add(textField_1);
 		
 		JLabel lblLastName = new JLabel("Last Name*");
-		lblLastName.setBounds(85, 88, 95, 16);
+		lblLastName.setBounds(12, 80, 77, 16);
 		getContentPane().add(lblLastName);
 		
 		textField_2 = new JTextField();
@@ -277,6 +277,15 @@ public class AddStudent extends JFrame {
 		textField_14.setBounds(274, 140, 95, 22);
 		panel_1.add(textField_14);
 		textField_14.setColumns(10);
+		
+		JLabel lblClassWantTo = new JLabel("Class want to join :");
+		lblClassWantTo.setBounds(306, 42, 117, 16);
+		getContentPane().add(lblClassWantTo);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"None", "Set of classes come to here"}));
+		comboBox_1.setBounds(327, 60, 143, 22);
+		getContentPane().add(comboBox_1);
 		getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblMobileNumber_2, textField, textField_1, comboBox, lblAddStudent, txtDd, txtMm, lblLastName, txtYyyy, lblAddressLine, textField_2, textField_3, lblAddressLine_1, textField_4, lblAddressLine_2, textField_5, lblMobileNumber, textField_6, lblMobileNumber_1, textField_7, lblGender, lblDateOfBirth, label, label_1, lblNewLabel}));
 		
 

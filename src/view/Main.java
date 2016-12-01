@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Main {
 
@@ -70,16 +72,13 @@ public class Main {
 		btnStudentEnrollment.setBounds(511, 266, 177, 25);
 		frmMusicClassManagement.getContentPane().add(btnStudentEnrollment);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(82, 113, 167, 25);
-		frmMusicClassManagement.getContentPane().add(comboBox);
-		
-		JButton btnOpen = new JButton("open");
-		btnOpen.setBounds(261, 112, 97, 25);
-		frmMusicClassManagement.getContentPane().add(btnOpen);
-		
-		JLabel lblCurrentClass = new JLabel("Current class");
-		lblCurrentClass.setBounds(82, 84, 146, 16);
-		frmMusicClassManagement.getContentPane().add(lblCurrentClass);
+		JLabel lblSignOut = new JLabel("Sign out");
+		lblSignOut.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+			}
+		});
+		lblSignOut.setBounds(532, 30, 56, 16);
+		frmMusicClassManagement.getContentPane().add(lblSignOut);
 	}
 }
