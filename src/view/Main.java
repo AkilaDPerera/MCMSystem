@@ -8,16 +8,21 @@ import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.ListSelectionModel;
 
 public class Main {
 
 	private JFrame frmMusicClassManagement;
+	private JTable table;
 
 	/**
 	 * Launch the application.
 	 */
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -68,10 +73,6 @@ public class Main {
 		lblRole.setBounds(532, 13, 56, 16);
 		frmMusicClassManagement.getContentPane().add(lblRole);
 		
-		JButton btnStudentEnrollment = new JButton("Student Enrollment");
-		btnStudentEnrollment.setBounds(511, 266, 177, 25);
-		frmMusicClassManagement.getContentPane().add(btnStudentEnrollment);
-		
 		JLabel lblSignOut = new JLabel("Sign out");
 		lblSignOut.addMouseListener(new MouseAdapter() {
 			@Override
@@ -80,5 +81,37 @@ public class Main {
 		});
 		lblSignOut.setBounds(532, 30, 56, 16);
 		frmMusicClassManagement.getContentPane().add(lblSignOut);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(23, 108, 462, 227);
+		frmMusicClassManagement.getContentPane().add(scrollPane);
+		
+		table = new JTable();
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+			},
+			new String[] {
+				"Class-ID", "Subject", "Teacher", "On", "From"
+			}
+		));
+		scrollPane.setViewportView(table);
+		
+		JLabel lblCurrentClasses = new JLabel("Current classes");
+		lblCurrentClasses.setBounds(28, 71, 236, 16);
+		frmMusicClassManagement.getContentPane().add(lblCurrentClasses);
+		
+		JButton btnMore = new JButton("More");
+		btnMore.setBounds(207, 348, 97, 25);
+		frmMusicClassManagement.getContentPane().add(btnMore);
+		
+		JButton btnNewButton = new JButton("Add System User");
+		btnNewButton.setBounds(511, 275, 177, 25);
+		frmMusicClassManagement.getContentPane().add(btnNewButton);
 	}
 }
