@@ -7,18 +7,45 @@ import java.sql.*;
 import java.util.Properties;
 
 public class ConnectDb {
+	private static Connection connection = null;
+	private static Statement statement = null;
 	
+	private static void getConnected() throws FileNotFoundException, IOException, SQLException{
+		if (ConnectDb.connection==null){
+			Properties props = new Properties();
+			props.load(new FileInputStream("demo.properties"));
+			
+			String user = props.getProperty("user");
+			String password = props.getProperty("password");
+			String dburl = props.getProperty("dburl");
+			
+			ConnectDb.connection = DriverManager.getConnection(dburl, user, password);
+			ConnectDb.statement = ConnectDb.connection.createStatement();
+		}
+	}
+	
+	public static Connection getConnection() throws FileNotFoundException, IOException, SQLException{
+		ConnectDb.getConnected();
+		return ConnectDb.connection;
+	}
+	
+	public static Statement getStatement() throws FileNotFoundException, IOException, SQLException{
+		ConnectDb.getConnected();
+		return ConnectDb.statement;
+	}
+	
+	public static void closeConnections() throws SQLException{
+		ConnectDb.connection.close();
+		ConnectDb.statement.close();
+	}
+	
+	
+	
+	//This for initializing purposes
 	public static void initializeDB() throws FileNotFoundException, IOException{
-		Properties props = new Properties();
-		props.load(new FileInputStream("demo.properties"));
-		
-		String user = props.getProperty("user");
-		String password = props.getProperty("password");
-		String dburl = props.getProperty("dburl");
-		
 		try{
 			//Create a DB called mcms
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/", user, password);
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "");
 			Statement statement = conn.createStatement();
 			String create_db = "CREATE DATABASE IF NOT EXISTS MCMS";
 			statement.executeUpdate(create_db);
@@ -26,15 +53,14 @@ public class ConnectDb {
 			conn.close();
 			
 			//Table creations
-			Connection conn1 = DriverManager.getConnection(dburl, user, password);
-			Statement statement1 = conn1.createStatement();
-
-			String table_creation = "CREATE TABLE IF NOT EXISTS `mcms`.`user` (`iduser` INT NOT NULL,`role` ENUM('teacher', 'staff', 'admin') NOT NULL,`username` CHAR(50) NOT NULL,`password` CHAR(50) NOT NULL,PRIMARY KEY (`iduser`),UNIQUE INDEX `username_UNIQUE` (`username` ASC));" + 
+			String table_creation = "CREATE TABLE IF NOT EXISTS `mcms`.`user` (`iduser` INT NOT NULL,`role` ENUM('teacher', 'staff', 'admin') NOT NULL,`username` CHAR(50) NOT NULL,`password` CHAR(50) NOT NULL,PRIMARY KEY (`iduser`),UNIQUE INDEX `username_UNIQUE` (`username` ASC));"+
+			"";
+			String insert = "INSERT INTO `mcms`.`user` (`iduser`, `role`, `username`, `password`) VALUES ('1', 'admin', 'demo', 'demo');"+
 			"";
 			
-			statement1.executeUpdate(table_creation);
-			statement1.close();
-			conn1.close();
+			Statement stat = (Statement) ConnectDb.getStatement();
+			stat.executeUpdate(table_creation);
+			stat.executeUpdate(insert);
 			
 		}catch(Exception e){
 			
@@ -44,6 +70,7 @@ public class ConnectDb {
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException{
 		ConnectDb.initializeDB();
+		System.out.println("This is running from ConnectDb class due to easy development");
 	}
 
 //	public static void main(String[] args) throws FileNotFoundException, IOException {
