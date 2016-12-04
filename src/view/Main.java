@@ -12,78 +12,52 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ListSelectionModel;
+import java.awt.Color;
+import java.awt.Cursor;
+import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import javax.swing.border.LineBorder;
 
 public class Main {
 
-	private JFrame frmMusicClassManagement;
+	JFrame frmMusicClassManagement;
 	private JTable table;
-
-	/**
-	 * Launch the application.
-	 */
-	
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Main window = new Main();
-					window.frmMusicClassManagement.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
+	private static String role;
+	private static String username;
+	private static String userid;
 
 	/**
 	 * Create the application.
 	 */
-	public Main() {
-		initialize();
+	public Main(String role, String username, String userid) {
+		Main.role = role;
+		Main.username = username;
+		Main.userid = userid;
+		initialize(role, username, userid);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(String role, String username, String userid) {
 		frmMusicClassManagement = new JFrame();
 		frmMusicClassManagement.setTitle("Music Class Management System");
-		frmMusicClassManagement.setBounds(100, 100, 738, 560);
+		frmMusicClassManagement.setBounds(100, 100, 738, 439);
 		frmMusicClassManagement.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMusicClassManagement.getContentPane().setLayout(null);
 		
-		JButton btnAddStudent = new JButton("Add Student");
-		btnAddStudent.setBounds(511, 112, 177, 25);
-		frmMusicClassManagement.getContentPane().add(btnAddStudent);
-		
-		JButton btnAddTeacher = new JButton("Add Teacher");
-		btnAddTeacher.setBounds(511, 161, 177, 25);
-		frmMusicClassManagement.getContentPane().add(btnAddTeacher);
-		
-		JButton btnInitializeAClass = new JButton("Initialize a Class");
-		btnInitializeAClass.setBounds(511, 220, 177, 25);
-		frmMusicClassManagement.getContentPane().add(btnInitializeAClass);
-		
-		JLabel lblNewLabel = new JLabel("Username");
-		lblNewLabel.setBounds(600, 13, 108, 16);
-		frmMusicClassManagement.getContentPane().add(lblNewLabel);
-		
-		JLabel lblRole = new JLabel("Role");
-		lblRole.setBounds(532, 13, 56, 16);
-		frmMusicClassManagement.getContentPane().add(lblRole);
-		
-		JLabel lblSignOut = new JLabel("Sign out");
-		lblSignOut.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-			}
-		});
-		lblSignOut.setBounds(532, 30, 56, 16);
-		frmMusicClassManagement.getContentPane().add(lblSignOut);
+		JPanel panelLoginInfo = new JPanel();
+		panelLoginInfo.setBackground(Color.GRAY);
+		panelLoginInfo.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		panelLoginInfo.setBounds(698, 82, -486, -68);
+		frmMusicClassManagement.getContentPane().add(panelLoginInfo);
+		panelLoginInfo.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(23, 108, 462, 227);
+		scrollPane.setBounds(23, 105, 462, 236);
 		frmMusicClassManagement.getContentPane().add(scrollPane);
 		
 		table = new JTable();
@@ -103,15 +77,109 @@ public class Main {
 		scrollPane.setViewportView(table);
 		
 		JLabel lblCurrentClasses = new JLabel("Current classes");
-		lblCurrentClasses.setBounds(28, 71, 236, 16);
+		lblCurrentClasses.setBounds(23, 76, 236, 16);
 		frmMusicClassManagement.getContentPane().add(lblCurrentClasses);
 		
 		JButton btnMore = new JButton("More");
-		btnMore.setBounds(207, 348, 97, 25);
+		btnMore.setBounds(388, 354, 97, 25);
 		frmMusicClassManagement.getContentPane().add(btnMore);
 		
-		JButton btnNewButton = new JButton("Add System User");
-		btnNewButton.setBounds(511, 275, 177, 25);
-		frmMusicClassManagement.getContentPane().add(btnNewButton);
+		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(null, "Login Info...", TitledBorder.LEFT, TitledBorder.TOP, null, null));
+		panel.setBounds(500, 13, 208, 142);
+		frmMusicClassManagement.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblUsername = new JLabel(username);
+		lblUsername.setHorizontalAlignment(SwingConstants.LEFT);
+		lblUsername.setBounds(114, 57, 82, 16);
+		panel.add(lblUsername);
+		
+		JLabel lblRole = new JLabel(role.toUpperCase());
+		lblRole.setHorizontalAlignment(SwingConstants.LEFT);
+		lblRole.setBounds(114, 87, 82, 16);
+		panel.add(lblRole);
+		
+		JLabel lblUserid = new JLabel(userid);
+		lblUserid.setHorizontalAlignment(SwingConstants.LEFT);
+		lblUserid.setBounds(114, 28, 82, 16);
+		panel.add(lblUserid);
+		
+		JLabel lblUserid_1 = new JLabel("UserID :");
+		lblUserid_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblUserid_1.setBounds(29, 28, 73, 16);
+		panel.add(lblUserid_1);
+		
+		JLabel lblUsername_1 = new JLabel("Username :");
+		lblUsername_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblUsername_1.setBounds(29, 57, 73, 16);
+		panel.add(lblUsername_1);
+		
+		JLabel lblRole_1 = new JLabel("Role :");
+		lblRole_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblRole_1.setBounds(29, 87, 73, 16);
+		panel.add(lblRole_1);
+		
+		JLabel lblSignOut = new JLabel("Sign out");
+		lblSignOut.setBounds(74, 113, 47, 16);
+		panel.add(lblSignOut);
+		lblSignOut.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblSignOut.setForeground(Color.BLUE);
+		
+		JLabel lblTitle = new JLabel("Music Class Management System");
+		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitle.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblTitle.setBounds(23, 13, 462, 50);
+		frmMusicClassManagement.getContentPane().add(lblTitle);
+		
+		JPanel panelAdmin = new JPanel();
+		panelAdmin.setVisible(false);
+		
+		JPanel panelTeacher = new JPanel();
+		panelTeacher.setBounds(500, 168, 208, 211);
+		frmMusicClassManagement.getContentPane().add(panelTeacher);
+		panelTeacher.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelTeacher.setLayout(null);
+		
+		JButton btnSalary = new JButton("Salary Details");
+		btnSalary.setBounds(12, 92, 184, 25);
+		panelTeacher.add(btnSalary);
+		panelTeacher.setVisible(false);
+		panelAdmin.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelAdmin.setBounds(500, 168, 208, 211);
+		frmMusicClassManagement.getContentPane().add(panelAdmin);
+		panelAdmin.setLayout(null);
+		
+		JButton btnAddStudent = new JButton("Add Student");
+		btnAddStudent.setBounds(19, 13, 177, 25);
+		panelAdmin.add(btnAddStudent);
+		
+		JButton btnAddTeacher = new JButton("Add Teacher");
+		btnAddTeacher.setBounds(19, 61, 177, 25);
+		panelAdmin.add(btnAddTeacher);
+		
+		JButton btnInitializeAClass = new JButton("Initialize a Class");
+		btnInitializeAClass.setBounds(19, 114, 177, 25);
+		panelAdmin.add(btnInitializeAClass);
+		
+		JButton btnAddUser = new JButton("Add System User");
+		btnAddUser.setBounds(19, 161, 177, 25);
+		panelAdmin.add(btnAddUser);
+		
+		if (role.equals("teacher")){
+			panelTeacher.setVisible(true);
+		}else{
+			panelAdmin.setVisible(true);
+		}
+		
+		lblSignOut.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Signin frame = new Signin();
+				frame.setVisible(true);
+				frmMusicClassManagement.dispose();
+			}
+		});
+
 	}
 }
