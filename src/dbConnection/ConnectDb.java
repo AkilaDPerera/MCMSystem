@@ -52,15 +52,26 @@ public class ConnectDb {
 			statement.close();
 			conn.close();
 			
-			//Table creations
-			String table_creation = "CREATE TABLE IF NOT EXISTS `mcms`.`user` (`iduser` INT NOT NULL,`role` ENUM('teacher', 'staff', 'admin') NOT NULL,`username` CHAR(50) NOT NULL,`password` CHAR(50) NOT NULL,PRIMARY KEY (`iduser`),UNIQUE INDEX `username_UNIQUE` (`username` ASC));"+
-			"";
-			String insert = "INSERT INTO `mcms`.`user` (`iduser`, `role`, `username`, `password`) VALUES ('1', 'admin', 'demo', 'demo');"+
-			"";
-			
 			Statement stat = (Statement) ConnectDb.getStatement();
-			stat.executeUpdate(table_creation);
-			stat.executeUpdate(insert);
+			
+			//Table creations
+			String [] table_creation = new String [] {
+					"CREATE TABLE IF NOT EXISTS `mcms`.`user` (`iduser` INT NOT NULL,`role` ENUM('teacher', 'staff', 'admin') NOT NULL,`username` CHAR(50) NOT NULL,`password` CHAR(50) NOT NULL,PRIMARY KEY (`iduser`),UNIQUE INDEX `username_UNIQUE` (`username` ASC));",
+					"CREATE TABLE IF NOT EXISTS `mcms`.`teacher` (`idteacher` INT NOT NULL AUTO_INCREMENT, `first_name` CHAR(50) NOT NULL, `last_name` CHAR(50) NOT NULL, `phone` CHAR(14) NOT NULL, `alt_phone` CHAR(14) NULL, `address` VARCHAR(255) NOT NULL, `email` VARCHAR(45) NOT NULL, PRIMARY KEY (`idteacher`), UNIQUE INDEX `email_UNIQUE` (`email` ASC));"
+					};
+			for (String sql: table_creation){
+				stat.executeUpdate(sql);
+			}
+			
+			//Data inserting
+			String [] insert = new String [] {
+					"INSERT INTO `mcms`.`user` (`iduser`, `role`, `username`, `password`) VALUES ('1', 'admin', 'demo', 'demo');",
+					"INSERT INTO `mcms`.`user` (`iduser`, `role`, `username`, `password`) VALUES ('2', 'teacher', 'demot', 'demot');"
+					};
+			
+			for (String sql: insert){
+				stat.executeUpdate(sql);
+			}
 			
 		}catch(Exception e){
 			

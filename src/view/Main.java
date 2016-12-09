@@ -44,6 +44,7 @@ public class Main {
 	 */
 	private void initialize(String role, String username, String userid) {
 		frmMusicClassManagement = new JFrame();
+		frmMusicClassManagement.setResizable(false);
 		frmMusicClassManagement.setTitle("Music Class Management System");
 		frmMusicClassManagement.setBounds(100, 100, 738, 439);
 		frmMusicClassManagement.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -134,17 +135,6 @@ public class Main {
 		
 		JPanel panelAdmin = new JPanel();
 		panelAdmin.setVisible(false);
-		
-		JPanel panelTeacher = new JPanel();
-		panelTeacher.setBounds(500, 168, 208, 211);
-		frmMusicClassManagement.getContentPane().add(panelTeacher);
-		panelTeacher.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelTeacher.setLayout(null);
-		
-		JButton btnSalary = new JButton("Salary Details");
-		btnSalary.setBounds(12, 92, 184, 25);
-		panelTeacher.add(btnSalary);
-		panelTeacher.setVisible(false);
 		panelAdmin.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panelAdmin.setBounds(500, 168, 208, 211);
 		frmMusicClassManagement.getContentPane().add(panelAdmin);
@@ -165,6 +155,17 @@ public class Main {
 		JButton btnAddUser = new JButton("Add System User");
 		btnAddUser.setBounds(19, 161, 177, 25);
 		panelAdmin.add(btnAddUser);
+		
+		JPanel panelTeacher = new JPanel();
+		panelTeacher.setBounds(500, 168, 208, 211);
+		frmMusicClassManagement.getContentPane().add(panelTeacher);
+		panelTeacher.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelTeacher.setLayout(null);
+		
+		JButton btnSalary = new JButton("Salary Details");
+		btnSalary.setBounds(12, 92, 184, 25);
+		panelTeacher.add(btnSalary);
+		panelTeacher.setVisible(false);
 		
 		if (role.equals("teacher")){
 			panelTeacher.setVisible(true);

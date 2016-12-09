@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 
-import validation.SignInValidation;
+import model.SignInValidation;
 
 import java.awt.Component;
 import java.awt.Window.Type;
@@ -40,13 +40,13 @@ public class Signin extends JFrame {
 	public static void main(String[] args) {
 		Signin frame = new Signin();
 		frame.setVisible(true);
-		frm = frame;
 	}
 
 	/**
 	 * Create the frame.
 	 */
 	public Signin() {
+		frm = this;
 		setResizable(false);
 		setAlwaysOnTop(true);
 		setTitle("Sign in");
