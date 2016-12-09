@@ -17,8 +17,6 @@ public class AddTeacher extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField textField_7;
@@ -79,24 +77,6 @@ public class AddTeacher extends JFrame {
 		textField_2.setBounds(140, 181, 164, 22);
 		getContentPane().add(textField_2);
 		textField_2.setColumns(10);
-		
-		JLabel lblAddressLine_1 = new JLabel("Address line 2");
-		lblAddressLine_1.setBounds(12, 219, 116, 16);
-		getContentPane().add(lblAddressLine_1);
-		
-		textField_3 = new JTextField();
-		textField_3.setBounds(140, 216, 164, 22);
-		getContentPane().add(textField_3);
-		textField_3.setColumns(10);
-		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(140, 251, 164, 22);
-		getContentPane().add(textField_4);
-		
-		JLabel lblNewLabel_3 = new JLabel("Address line 3");
-		lblNewLabel_3.setBounds(12, 254, 116, 16);
-		getContentPane().add(lblNewLabel_3);
 		
 		textField_5 = new JTextField();
 		textField_5.setBounds(140, 308, 164, 22);
@@ -170,7 +150,7 @@ public class AddTeacher extends JFrame {
 		JCheckBox chckbxGitur = new JCheckBox("Gitur");
 		chckbxGitur.setBounds(338, 203, 113, 25);
 		getContentPane().add(chckbxGitur);
-		getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblNewLabel_1, lblAddressLine, lblNewLabel_2, lblAddressLine_1, lblNewLabel_3, lblPhoneNumberprimary, lblNewLabel_4, lblEmailAddress, lblNewLabel_5, lblRs, lblDecoration, lblNewLabel, comboBox, textField, textField_1, textField_2, textField_3, textField_4, textField_5, textField_6, textField_7, textField_8, btnSubmit}));
+		getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblNewLabel_1, lblAddressLine, lblNewLabel_2, lblPhoneNumberprimary, lblNewLabel_4, lblEmailAddress, lblNewLabel_5, lblRs, lblDecoration, lblNewLabel, comboBox, textField, textField_1, textField_2, textField_5, textField_6, textField_7, textField_8, btnSubmit}));
 
 	}
 }

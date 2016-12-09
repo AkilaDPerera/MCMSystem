@@ -26,19 +26,17 @@ import javax.swing.JPanel;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.JDatePanelImpl;
+import javax.swing.JFormattedTextField.AbstractFormatter;
 
 public class AddStudent extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField textField_7;
-	private JTextField txtDd;
-	private JTextField txtMm;
-	private JTextField txtYyyy;
 	private ButtonGroup bg = new ButtonGroup();
 	private JTextField textField_8;
 	private JTextField textField_9;
@@ -104,24 +102,6 @@ public class AddStudent extends JFrame {
 		lblAddressLine.setBounds(12, 188, 112, 16);
 		getContentPane().add(lblAddressLine);
 		
-		JLabel lblAddressLine_1 = new JLabel("Address line 2");
-		lblAddressLine_1.setBounds(12, 244, 112, 16);
-		getContentPane().add(lblAddressLine_1);
-		
-		textField_3 = new JTextField();
-		textField_3.setBounds(22, 262, 164, 22);
-		getContentPane().add(textField_3);
-		textField_3.setColumns(10);
-		
-		JLabel lblAddressLine_2 = new JLabel("Address line 3");
-		lblAddressLine_2.setBounds(12, 297, 112, 16);
-		getContentPane().add(lblAddressLine_2);
-		
-		textField_4 = new JTextField();
-		textField_4.setBounds(22, 315, 164, 22);
-		getContentPane().add(textField_4);
-		textField_4.setColumns(10);
-		
 		textField_5 = new JTextField();
 		textField_5.setBounds(306, 209, 164, 22);
 		getContentPane().add(textField_5);
@@ -132,21 +112,21 @@ public class AddStudent extends JFrame {
 		getContentPane().add(lblMobileNumber);
 		
 		textField_6 = new JTextField();
-		textField_6.setBounds(306, 262, 164, 22);
+		textField_6.setBounds(22, 262, 164, 22);
 		getContentPane().add(textField_6);
 		textField_6.setColumns(10);
 		
 		textField_7 = new JTextField();
-		textField_7.setBounds(306, 315, 164, 22);
+		textField_7.setBounds(306, 262, 164, 22);
 		getContentPane().add(textField_7);
 		textField_7.setColumns(10);
 		
 		JLabel lblMobileNumber_1 = new JLabel("Mobile Number*");
-		lblMobileNumber_1.setBounds(281, 244, 108, 16);
+		lblMobileNumber_1.setBounds(12, 244, 108, 16);
 		getContentPane().add(lblMobileNumber_1);
 		
 		JLabel lblMobileNumber_2 = new JLabel("Mobile Number");
-		lblMobileNumber_2.setBounds(281, 297, 108, 16);
+		lblMobileNumber_2.setBounds(281, 244, 108, 16);
 		getContentPane().add(lblMobileNumber_2);
 		
 		JLabel lblGender = new JLabel("Gender*");
@@ -158,35 +138,9 @@ public class AddStudent extends JFrame {
 		comboBox.setBounds(22, 153, 164, 22);
 		getContentPane().add(comboBox);
 		
-		JLabel lblDateOfBirth = new JLabel("Date of birth (dd/mm/yyyy)");
+		JLabel lblDateOfBirth = new JLabel("Date of birth*");
 		lblDateOfBirth.setBounds(259, 130, 164, 16);
 		getContentPane().add(lblDateOfBirth);
-		
-		txtDd = new JTextField();
-		txtDd.setText("dd");
-		txtDd.setBounds(306, 153, 20, 22);
-		getContentPane().add(txtDd);
-		txtDd.setColumns(10);
-		
-		txtMm = new JTextField();
-		txtMm.setText("mm");
-		txtMm.setBounds(338, 153, 20, 22);
-		getContentPane().add(txtMm);
-		txtMm.setColumns(10);
-		
-		txtYyyy = new JTextField();
-		txtYyyy.setText("yyyy");
-		txtYyyy.setBounds(370, 153, 43, 22);
-		getContentPane().add(txtYyyy);
-		txtYyyy.setColumns(10);
-		
-		JLabel label = new JLabel("/");
-		label.setBounds(327, 156, 10, 16);
-		getContentPane().add(label);
-		
-		JLabel label_1 = new JLabel("/");
-		label_1.setBounds(361, 156, 10, 16);
-		getContentPane().add(label_1);
 		
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("New Family");
 
@@ -286,7 +240,15 @@ public class AddStudent extends JFrame {
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"None", "Set of classes come to here"}));
 		comboBox_1.setBounds(327, 60, 143, 22);
 		getContentPane().add(comboBox_1);
-		getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblMobileNumber_2, textField, textField_1, comboBox, lblAddStudent, txtDd, txtMm, lblLastName, txtYyyy, lblAddressLine, textField_2, textField_3, lblAddressLine_1, textField_4, lblAddressLine_2, textField_5, lblMobileNumber, textField_6, lblMobileNumber_1, textField_7, lblGender, lblDateOfBirth, label, label_1, lblNewLabel}));
+		
+		JLabel lblDate = new JLabel("dd/mm/yyyy");
+		lblDate.setBounds(281, 156, 80, 16);
+		getContentPane().add(lblDate);
+		
+		JButton btnPickDate = new JButton("Pick Date");
+		btnPickDate.setBounds(373, 152, 97, 25);
+		getContentPane().add(btnPickDate);
+		getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblMobileNumber_2, textField, textField_1, comboBox, lblAddStudent, lblLastName, lblAddressLine, textField_2, textField_5, lblMobileNumber, textField_6, lblMobileNumber_1, textField_7, lblGender, lblDateOfBirth, lblNewLabel}));
 		
 
 
