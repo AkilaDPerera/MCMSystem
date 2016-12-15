@@ -26,8 +26,6 @@ import javax.swing.JPanel;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
-import org.jdatepicker.impl.JDatePickerImpl;
-import org.jdatepicker.impl.JDatePanelImpl;
 import javax.swing.JFormattedTextField.AbstractFormatter;
 
 public class AddStudent extends JFrame {
