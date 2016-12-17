@@ -12,7 +12,7 @@ public class User {
 	public static String [] getPsswrdRole(String username) throws FileNotFoundException, IOException, SQLException{
 		
 		Connection conn = (Connection) ConnectDb.getConnection();
-		PreparedStatement passwordFromUsername = (PreparedStatement) conn.prepareStatement("SELECT password, role, iduser FROM user WHERE username=?");
+		PreparedStatement passwordFromUsername = (PreparedStatement) conn.prepareStatement("SELECT password, privileges, id FROM user WHERE username=?");
 		passwordFromUsername.setString(1, username);
 		ResultSet rs = passwordFromUsername.executeQuery();
 		
