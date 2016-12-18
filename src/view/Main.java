@@ -166,6 +166,13 @@ public class Main {
 		panelAdmin.add(btnAddTeacher);
 		
 		JButton btnInitializeAClass = new JButton("Initialize a Class");
+		btnInitializeAClass.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				InitializeClass window = new InitializeClass(frmMusicClassManagement);
+				window.setVisible(true);
+				frmMusicClassManagement.setVisible(false);
+			}
+		});
 		btnInitializeAClass.setBounds(19, 114, 177, 25);
 		panelAdmin.add(btnInitializeAClass);
 		

@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 
 public class AddTeacher extends JFrame {
 	private JFrame main;
-	private AddTeacher win;
+	private JFrame win;
 	private JTextField textFieldFirstName;
 	private JTextField textFieldLastName;
 	private JTextField textFieldAddress;

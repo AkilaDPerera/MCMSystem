@@ -11,13 +11,19 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Component;
 import javax.swing.JButton;
 import javax.swing.border.EtchedBorder;
+import javax.swing.SwingConstants;
 
 public class InitializeClass extends JFrame {
 
+	private JFrame main;
+	private JFrame win;
+	
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField txtOldGym;
@@ -28,7 +34,12 @@ public class InitializeClass extends JFrame {
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField txtLine;
-	private JTextField txtLineoptional;
+	
+	private JLabel lblName;
+	private JLabel lblID;
+	private JLabel lblStdName;
+	private JLabel lblStdId;
+	private JTextField textFieldSubject;
 
 	/**
 	 * Launch the application.
@@ -49,7 +60,9 @@ public class InitializeClass extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public InitializeClass() {
+	public InitializeClass(JFrame main) {
+		this.main = main;
+		this.win = this;
 		setTitle("Initialize Class");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 560);
@@ -65,11 +78,6 @@ public class InitializeClass extends JFrame {
 		JLabel lblSubject = new JLabel("Subject");
 		lblSubject.setBounds(12, 115, 68, 16);
 		contentPane.add(lblSubject);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Organ", "Gitur", "Violin", "Voice Training"}));
-		comboBox.setBounds(92, 112, 124, 22);
-		contentPane.add(comboBox);
 		
 		JLabel lblTeacher = new JLabel("Teacher");
 		lblTeacher.setBounds(12, 67, 56, 16);
@@ -187,19 +195,31 @@ public class InitializeClass extends JFrame {
 		panel_induvidual.add(txtLine);
 		txtLine.setColumns(10);
 		
-		txtLineoptional = new JTextField();
-		txtLineoptional.setText("line 2 (optional)");
-		txtLineoptional.setBounds(80, 106, 154, 22);
-		panel_induvidual.add(txtLineoptional);
-		txtLineoptional.setColumns(10);
-		
 		JButton btnNewButton = new JButton("Select Student");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SelectStudent window;
+				try {
+					window = new SelectStudent(win);
+					window.setVisible(true);
+					win.setVisible(false);
+				} catch (IOException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnNewButton.setBounds(12, 19, 222, 25);
 		panel_induvidual.add(btnNewButton);
 		
-		JLabel lblStdName = new JLabel("Std name | ID");
-		lblStdName.setBounds(80, 57, 154, 16);
+		lblStdName = new JLabel("Name");
+		lblStdName.setBounds(158, 57, 76, 16);
 		panel_induvidual.add(lblStdName);
+		
+		lblStdId = new JLabel("ID");
+		lblStdId.setHorizontalAlignment(SwingConstants.CENTER);
+		lblStdId.setBounds(80, 57, 56, 16);
+		panel_induvidual.add(lblStdId);
 		
 		JPanel panel_group = new JPanel();
 		panel_group.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
@@ -233,12 +253,43 @@ public class InitializeClass extends JFrame {
 		contentPane.add(btnSubmit);
 		
 		JButton btnNewButton_1 = new JButton("Select Teacher");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SelectTeacher window;
+				try {
+					window = new SelectTeacher(win);
+					window.setVisible(true);
+					win.setVisible(false);
+				} catch (IOException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		btnNewButton_1.setBounds(92, 63, 124, 25);
 		contentPane.add(btnNewButton_1);
 		
-		JLabel lblNewLabel = new JLabel("Teacher name | ID");
-		lblNewLabel.setBounds(228, 67, 218, 16);
-		contentPane.add(lblNewLabel);
+		lblName = new JLabel("Name");
+		lblName.setBounds(336, 67, 97, 16);
+		contentPane.add(lblName);
+		
+		lblID = new JLabel("ID");
+		lblID.setBounds(259, 67, 35, 16);
+		contentPane.add(lblID);
+		
+		JLabel lblId = new JLabel("ID:");
+		lblId.setBounds(239, 67, 23, 16);
+		contentPane.add(lblId);
+		
+		JLabel lblName_1 = new JLabel("Name:");
+		lblName_1.setBounds(289, 67, 42, 16);
+		contentPane.add(lblName_1);
+		
+		textFieldSubject = new JTextField();
+		textFieldSubject.setBounds(92, 112, 116, 22);
+		contentPane.add(textFieldSubject);
+		textFieldSubject.setColumns(10);
 		
 		comboBox_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -254,5 +305,19 @@ public class InitializeClass extends JFrame {
 				}
 			}
 		});
+		
+		
+	}
+	
+	public void setNameId(String id, String name){
+		lblName.setText(name);
+		lblID.setText(id);
+	}
+	public void setStdNameId(String id, String name){
+		lblStdId.setText(id);
+		lblStdName.setText(name);
+	}
+	public void setAddress(String address){
+		txtLine.setText(address);
 	}
 }

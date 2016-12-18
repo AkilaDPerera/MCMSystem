@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -24,6 +25,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class SelectStudent extends JFrame {
+	private InitializeClass submain;
+	private JFrame win;
+	
 	private JTextField textField;
 	private ButtonGroup bg = new ButtonGroup();
 	private JTable table;
@@ -50,7 +54,10 @@ public class SelectStudent extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SelectStudent() throws FileNotFoundException, IOException, SQLException {
+	public SelectStudent(JFrame submain) throws FileNotFoundException, IOException, SQLException {
+		this.submain = (InitializeClass) submain;
+		this.win = this;
+		
 		setTitle("Select Student");
 		setBounds(100, 100, 880, 520);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -100,6 +107,22 @@ public class SelectStudent extends JFrame {
 		scrollPane.setViewportView(table);
 		
 		JButton btnNewButton = new JButton("Select");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int index = table.getSelectedRow();
+				if (index>=0){
+					String id = table.getValueAt(index, 0).toString();
+					String name = (String) table.getValueAt(index, 1);
+					String address = (String) table.getValueAt(index, 5);
+					((InitializeClass) submain).setStdNameId(id, name);
+					((InitializeClass) submain).setAddress(address);
+					submain.setVisible(true);
+					win.dispose();
+				}else{
+					JOptionPane.showMessageDialog(null, "Select a student to proceed.", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
 		btnNewButton.setBounds(12, 424, 838, 25);
 		getContentPane().add(btnNewButton);
 		

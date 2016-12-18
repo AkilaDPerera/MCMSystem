@@ -40,7 +40,7 @@ import javax.swing.SwingConstants;
 
 public class AddStudent extends JFrame {
 	private JFrame main;
-	private AddStudent win;
+	private JFrame win;
 	private JTextField textFieldFirstName;
 	private JTextField textFieldLastName;
 	private JTextField textFieldAddress;
