@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.AbstractListModel;
 import javax.swing.ButtonGroup;
 
@@ -31,6 +32,9 @@ import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class SelectTeacher extends JFrame {
+	private InitializeClass submain;
+	private JFrame win;
+	
 	private JTable table;
 	private JTextField textField;
 	private ButtonGroup bg = new ButtonGroup();
@@ -42,7 +46,7 @@ public class SelectTeacher extends JFrame {
 //		EventQueue.invokeLater(new Runnable() {
 //			public void run() {
 //				try {
-//					SelectTeacher frame = new SelectTeacher("none");
+//					SelectTeacher frame = new SelectTeacher(null);
 //					frame.setVisible(true);
 //				} catch (Exception e) {
 //					e.printStackTrace();
@@ -57,7 +61,10 @@ public class SelectTeacher extends JFrame {
 	 * @throws IOException 
 	 * @throws FileNotFoundException 
 	 */
-	public SelectTeacher(String type) throws FileNotFoundException, IOException, SQLException {
+	public SelectTeacher(JFrame submain) throws FileNotFoundException, IOException, SQLException {
+		this.submain = (InitializeClass) submain;
+		this.win = this;
+		
 		setTitle("Select Teacher");
 		setBounds(100, 100, 880, 520);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -77,6 +84,20 @@ public class SelectTeacher extends JFrame {
 		scrollPane.setViewportView(table);
 		
 		JButton btnNewButton = new JButton("Select");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int index = table.getSelectedRow();
+				if (index>=0){
+					String id = table.getValueAt(index, 0).toString();
+					String name = (String) table.getValueAt(index, 1);
+					((InitializeClass) submain).setNameId(id, name);
+					submain.setVisible(true);
+					win.dispose();
+				}else{
+					JOptionPane.showMessageDialog(null, "Select a teacher to proceed.", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
 		btnNewButton.setBounds(12, 416, 838, 25);
 		getContentPane().add(btnNewButton);
 		
