@@ -20,6 +20,8 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.border.LineBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Main {
 
@@ -141,6 +143,14 @@ public class Main {
 		panelAdmin.setLayout(null);
 		
 		JButton btnAddStudent = new JButton("Add Student");
+		btnAddStudent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AddStudent addStudentWindow = new AddStudent(frmMusicClassManagement);
+				addStudentWindow.setVisible(true);
+				frmMusicClassManagement.setVisible(false);
+
+			}
+		});
 		btnAddStudent.setBounds(19, 13, 177, 25);
 		panelAdmin.add(btnAddStudent);
 		

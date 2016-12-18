@@ -11,6 +11,15 @@ public class GeneralValidations {
 		}
 	}
 	
+	public static boolean optionalNameValidation(String name){
+		name = name.trim();
+		if (name.matches("[A-Za-z ]*") && name.length()<50){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
 	public static boolean addressValidation(String address){
 		address = address.trim();
 		if (address.matches("[0-9A-Za-z ,/.]+") && address.length()<255){
@@ -23,6 +32,15 @@ public class GeneralValidations {
 	public static boolean phoneValidation(String phone){
 		phone = phone.trim();
 		if (phone.matches("^0[0-9]{9}") || phone.matches("^\\+94[0-9]{9}") || phone.matches("[0-9]{9}")){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public static boolean optionalPhoneValidation(String phone){
+		phone = phone.trim();
+		if (phone.matches("^0[0-9]{9}") || phone.matches("^\\+94[0-9]{9}") || phone.matches("[0-9]{9}") || phone.matches("")){
 			return true;
 		}else{
 			return false;
@@ -47,9 +65,18 @@ public class GeneralValidations {
 		}
 	}
 	
-	
-	public static void main(String [] args){
-		System.out.println(salaryValidation(""));
+	public static boolean idValidation(String id){
+		id = id.trim();
+		if (id.matches("[0-9]+")){
+			return true;
+		}else{
+			return false;
+		}
 	}
+	
+	
+//	public static void main(String [] args){
+//		System.out.println(idValidation("5s"));
+//	}
 
 }
