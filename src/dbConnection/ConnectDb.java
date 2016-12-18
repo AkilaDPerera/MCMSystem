@@ -54,10 +54,7 @@ public class ConnectDb {
 
 			// Table creations
 			String[] table_creation = new String[] {
-//					"CREATE TABLE IF NOT EXISTS `mcms`.`user` (`iduser` INT NOT NULL,`role` ENUM('teacher', 'staff', 'admin') NOT NULL,`username` CHAR(50) NOT NULL,`password` CHAR(50) NOT NULL,PRIMARY KEY (`iduser`),UNIQUE INDEX `username_UNIQUE` (`username` ASC));",
-	//				"CREATE TABLE IF NOT EXISTS `mcms`.`teacher` (`idteacher` INT NOT NULL AUTO_INCREMENT, `first_name` CHAR(50) NOT NULL, `last_name` CHAR(50) NOT NULL, `phone` CHAR(14) NOT NULL, `alt_phone` CHAR(14) NULL, `address` VARCHAR(255) NOT NULL, `email` VARCHAR(45) NOT NULL, PRIMARY KEY (`idteacher`), UNIQUE INDEX `email_UNIQUE` (`email` ASC));",
-					
-					"CREATE TABLE IF NOT EXISTS mcms.family (id INT NOT NULL AUTO_INCREMENT,  mother_name VARCHAR(255) NULL, mother_phone VARCHAR(15) NULL,  father_name VARCHAR(255) NULL,  father_phone VARCHAR(15) NULL,  guardian_title VARCHAR(7) NULL COMMENT 'Mr. or Dr. or whatever the title is. ',  guardian_name VARCHAR(255) NULL,  guardian_phone VARCHAR(15) NULL,  PRIMARY KEY (id));",
+					"CREATE TABLE IF NOT EXISTS mcms.family (id INT NOT NULL AUTO_INCREMENT,  mother_name VARCHAR(255) NULL, mother_phone VARCHAR(15) NULL,  father_name VARCHAR(255) NULL,  father_phone VARCHAR(15) NULL, guardian_name VARCHAR(255) NULL,  guardian_phone VARCHAR(15) NULL,  PRIMARY KEY (id));",
 					"CREATE TABLE IF NOT EXISTS `mcms`.`student` (  `id` INT NOT NULL AUTO_INCREMENT,  `first_name` VARCHAR(50) NOT NULL,  `last_name` VARCHAR(50) NOT NULL,  `phone` VARCHAR(15) NOT NULL,  `alt_phone` VARCHAR(15) NULL,  `address` VARCHAR(255) NOT NULL,  `email` VARCHAR(255) NULL,  `dob` DATE NOT NULL,  `gender` ENUM('male', 'female') NOT NULL,  `family_id` INT NOT NULL,  PRIMARY KEY (`id`, `family_id`),  CONSTRAINT `student_family_id`    FOREIGN KEY (`family_id`)    REFERENCES `mcms`.`family` (`id`)    ON DELETE NO ACTION    ON UPDATE NO ACTION);",
 					"CREATE TABLE IF NOT EXISTS `mcms`.`user` (  `id` INT NOT NULL,  `privileges` ENUM('admin', 'teacher', 'guest') NOT NULL,  `username` VARCHAR(45) NOT NULL,  `password` VARCHAR(100) NOT NULL,  `email` VARCHAR(45) NULL,  PRIMARY KEY (`id`));",
 					"CREATE TABLE IF NOT EXISTS `mcms`.`teacher` (  `id` INT NOT NULL AUTO_INCREMENT,  `first_name` VARCHAR(50) NOT NULL,  `last_name` VARCHAR(50) NOT NULL,  `phone` VARCHAR(20) NOT NULL,  `alt_phone` VARCHAR(20) NULL,  `address` VARCHAR(255) NULL,  `email` VARCHAR(45) NULL,  `user_id` INT NOT NULL,  PRIMARY KEY (`id`),  CONSTRAINT `site_user`    FOREIGN KEY (`user_id`)    REFERENCES `mcms`.`user` (`id`)    ON DELETE NO ACTION    ON UPDATE NO ACTION);",
@@ -80,7 +77,7 @@ public class ConnectDb {
 
 			// Data inserting
 			String[] insert = new String[] {
-					"insert into `mcms`.`user` values ('11', 'admin', 'demo','demo',' ');",
+					"insert into `mcms`.`user` values ('1', 'admin', 'demo','demo',' ');",
 					"insert into `mcms`.`user` values ('2', 'teacher', 'demot','demot',' ');"
 
 					//"INSERT INTO `mcms`.`user` (`iduser`, `role`, `username`, `password`,'email') VALUES ('1', 'admin', 'demo', 'demo','');",
