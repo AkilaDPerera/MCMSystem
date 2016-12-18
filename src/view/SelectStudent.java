@@ -1,6 +1,9 @@
 package view;
 
 import java.awt.EventQueue;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
@@ -10,8 +13,15 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import dbConnection.Student;
+import dbConnection.Teacher;
+import net.proteanit.sql.DbUtils;
+
 import javax.swing.JButton;
 import javax.swing.ListSelectionModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class SelectStudent extends JFrame {
 	private JTextField textField;
@@ -20,24 +30,27 @@ public class SelectStudent extends JFrame {
 
 	/**
 	 * Launch the application.
+	 * @throws SQLException 
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
 	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SelectStudent frame = new SelectStudent();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					SelectStudent frame = new SelectStudent();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
 	 */
-	public SelectStudent() {
+	public SelectStudent() throws FileNotFoundException, IOException, SQLException {
 		setTitle("Select Student");
 		setBounds(100, 100, 880, 520);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,84 +62,90 @@ public class SelectStudent extends JFrame {
 		
 		textField = new JTextField();
 		textField.setColumns(10);
-		textField.setBounds(473, 38, 315, 22);
+		textField.setBounds(473, 38, 283, 22);
 		getContentPane().add(textField);
 		
 		JLabel label = new JLabel("Keyword");
 		label.setBounds(416, 41, 56, 16);
 		getContentPane().add(label);
 		
-		JRadioButton radioButton = new JRadioButton("Last Name");
-		radioButton.setBounds(246, 40, 127, 25);
-		getContentPane().add(radioButton);
+		JRadioButton rdbtnLastName = new JRadioButton("Last Name");
+		rdbtnLastName.setBounds(246, 40, 127, 25);
+		getContentPane().add(rdbtnLastName);
 		
-		JRadioButton radioButton_1 = new JRadioButton("First Name");
-		radioButton_1.setBounds(151, 40, 91, 25);
-		getContentPane().add(radioButton_1);
+		JRadioButton rdbtnFirstName = new JRadioButton("First Name");
+		rdbtnFirstName.setBounds(151, 40, 91, 25);
+		getContentPane().add(rdbtnFirstName);
 		
-		JRadioButton radioButton_2 = new JRadioButton("ID");
-		radioButton_2.setBounds(106, 40, 41, 25);
-		getContentPane().add(radioButton_2);
+		JRadioButton rdbtnID = new JRadioButton("ID");
+		rdbtnID.setSelected(true);
+		rdbtnID.setBounds(106, 40, 41, 25);
+		getContentPane().add(rdbtnID);
 		
 		JLabel label_1 = new JLabel("Search by");
 		label_1.setBounds(41, 44, 57, 16);
 		getContentPane().add(label_1);
 		
-		bg.add(radioButton);
-		bg.add(radioButton_1);
-		bg.add(radioButton_2);
+		bg.add(rdbtnLastName);
+		bg.add(rdbtnFirstName);
+		bg.add(rdbtnID);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 86, 838, 324);
+		scrollPane.setBounds(12, 100, 838, 310);
 		getContentPane().add(scrollPane);
 		
 		table = new JTable();
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-			},
-			new String[] {
-				"Student-ID", "First Name", "Last Name", "Mobile No.", "Email", "Age"
-			}
-		) {
-			boolean[] columnEditables = new boolean[] {
-				false, false, false, false, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
-		table.getColumnModel().getColumn(0).setResizable(false);
-		table.getColumnModel().getColumn(1).setResizable(false);
-		table.getColumnModel().getColumn(2).setResizable(false);
-		table.getColumnModel().getColumn(3).setResizable(false);
-		table.getColumnModel().getColumn(4).setResizable(false);
-		table.getColumnModel().getColumn(5).setResizable(false);
+		table.setModel(DbUtils.resultSetToTableModel(Student.getAll()));
 		scrollPane.setViewportView(table);
 		
 		JButton btnNewButton = new JButton("Select");
 		btnNewButton.setBounds(12, 424, 838, 25);
 		getContentPane().add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("All");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					table.setModel(DbUtils.resultSetToTableModel(Student.getAll()));
+				} catch (IOException | SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_1.setBounds(41, 62, 57, 25);
+		getContentPane().add(btnNewButton_1);
+		
+		JButton btnFind = new JButton("Find");
+		btnFind.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (rdbtnID.isSelected()){
+					try {
+						table.setModel(DbUtils.resultSetToTableModel(Student.searchById(textField.getText().trim())));
+					} catch (IOException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}else if(rdbtnFirstName.isSelected()){
+					try {
+						table.setModel(DbUtils.resultSetToTableModel(Student.searchByFirstName(textField.getText().trim())));
+					} catch (IOException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}else if(rdbtnLastName.isSelected()){
+					try {
+						table.setModel(DbUtils.resultSetToTableModel(Student.searchByLastName(textField.getText().trim())));
+					} catch (IOException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
+		btnFind.setBounds(787, 38, 63, 25);
+		getContentPane().add(btnFind);
 
 	}
 
