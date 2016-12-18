@@ -44,6 +44,37 @@ public class Student {
 			return null;
 		}
 	}
+	
+	
+	public static ResultSet searchById(String id) throws FileNotFoundException, IOException, SQLException{
+		String temp = "'"+id+"%'";
+		Connection conn = (Connection) ConnectDb.getConnection();
+		PreparedStatement getList = (PreparedStatement) conn.prepareStatement("SELECT id, first_name AS 'First Name', last_name AS 'Last Name', phone AS 'Phone', alt_phone AS 'Phone (Optional)', address AS 'Address', email AS 'Email', gender AS 'Gender'  FROM `mcms`.`student` WHERE id LIKE ?;");
+		getList.setString(1, id);
+		return getList.executeQuery();
+	}
+	
+	public static ResultSet searchByFirstName(String name) throws FileNotFoundException, IOException, SQLException{
+		String temp = "'"+name+"%'";
+		Connection conn = (Connection) ConnectDb.getConnection();
+		PreparedStatement getList = (PreparedStatement) conn.prepareStatement("SELECT id, first_name AS 'First Name', last_name AS 'Last Name', phone AS 'Phone', alt_phone AS 'Phone (Optional)', address AS 'Address', email AS 'Email', gender AS 'Gender'  FROM `mcms`.`student` WHERE first_name LIKE ?;");
+		getList.setString(1, name);
+		return getList.executeQuery();
+	}
+	
+	public static ResultSet searchByLastName(String name) throws FileNotFoundException, IOException, SQLException{
+		String temp = "'"+name+"%'";
+		Connection conn = (Connection) ConnectDb.getConnection();
+		PreparedStatement getList = (PreparedStatement) conn.prepareStatement("SELECT id, first_name AS 'First Name', last_name AS 'Last Name', phone AS 'Phone', alt_phone AS 'Phone (Optional)', address AS 'Address', email AS 'Email', gender AS 'Gender'  FROM `mcms`.`student` WHERE last_name LIKE ?;");
+		getList.setString(1, name);
+		return getList.executeQuery();
+	}
+	
+	public static ResultSet getAll() throws FileNotFoundException, IOException, SQLException{
+		Connection conn = (Connection) ConnectDb.getConnection();
+		PreparedStatement getList = (PreparedStatement) conn.prepareStatement("SELECT id, first_name AS 'First Name', last_name AS 'Last Name', phone AS 'Phone', alt_phone AS 'Phone (Optional)', address AS 'Address', email AS 'Email', gender AS 'Gender'  FROM `mcms`.`student`");
+		return getList.executeQuery();
+	}
 
 //	public static void main(String[] args) {
 //		// TODO Auto-generated method stub
