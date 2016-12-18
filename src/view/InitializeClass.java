@@ -71,15 +71,6 @@ public class InitializeClass extends JFrame {
 		comboBox.setBounds(92, 112, 124, 22);
 		contentPane.add(comboBox);
 		
-		JLabel lblAgeRange = new JLabel("Age range");
-		lblAgeRange.setBounds(274, 115, 68, 16);
-		contentPane.add(lblAgeRange);
-		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"7-8 yr.", "9-10 yr.", "10-12 yr.", "12-14 yr.", "14-16 yr.", "16+ yr."}));
-		comboBox_1.setBounds(354, 112, 92, 22);
-		contentPane.add(comboBox_1);
-		
 		JLabel lblTeacher = new JLabel("Teacher");
 		lblTeacher.setBounds(12, 67, 56, 16);
 		contentPane.add(lblTeacher);
