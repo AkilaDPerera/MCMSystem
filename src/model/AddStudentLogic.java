@@ -36,9 +36,9 @@ public class AddStudentLogic {
 	}
 	
 
-	public static void main(String[] args) throws FileNotFoundException, SQLException, IOException {
-		// TODO Auto-generated method stub
-		//addStudentNewFam("akila", "perera", "0716360198", "", "Drashana, Ekneligoda, Kuruwita", "akila@gmail.com", "1994-12-5", "male", "swaran", "0713338232", "padma", "0718688549", "suram", "0716363198");
-	}
+//	public static void main(String[] args) throws FileNotFoundException, SQLException, IOException {
+//		// TODO Auto-generated method stub
+//		//addStudentNewFam("akila", "perera", "0716360198", "", "Drashana, Ekneligoda, Kuruwita", "akila@gmail.com", "1994-12-5", "male", "swaran", "0713338232", "padma", "0718688549", "suram", "0716363198");
+//	}
 
 }

@@ -155,6 +155,13 @@ public class Main {
 		panelAdmin.add(btnAddStudent);
 		
 		JButton btnAddTeacher = new JButton("Add Teacher");
+		btnAddTeacher.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AddTeacher addStudentWindow = new AddTeacher(frmMusicClassManagement);
+				addStudentWindow.setVisible(true);
+				frmMusicClassManagement.setVisible(false);
+			}
+		});
 		btnAddTeacher.setBounds(19, 61, 177, 25);
 		panelAdmin.add(btnAddTeacher);
 		

@@ -4,23 +4,35 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
+
+import model.AddTeacherLogic;
+import validation.GeneralValidations;
+
+import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JCheckBox;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.awt.event.ActionEvent;
 
 public class AddTeacher extends JFrame {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
+	private JFrame main;
+	private AddTeacher win;
+	private JTextField textFieldFirstName;
+	private JTextField textFieldLastName;
+	private JTextField textFieldAddress;
+	private JTextField textFieldPhone;
+	private JTextField textFieldPhone2;
+	private JTextField textFieldEmail;
 
 	/**
 	 * Launch the application.
@@ -41,9 +53,11 @@ public class AddTeacher extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddTeacher() {
+	public AddTeacher(JFrame main) {
+		this.main = main;
+		this.win = this;
 		setTitle("Add Teacher");
-		setBounds(100, 100, 500, 560);
+		setBounds(100, 100, 418, 446);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
@@ -51,106 +65,117 @@ public class AddTeacher extends JFrame {
 		lblNewLabel.setBounds(157, 13, 138, 16);
 		getContentPane().add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(140, 88, 164, 22);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		textFieldFirstName = new JTextField();
+		textFieldFirstName.setBounds(140, 57, 164, 22);
+		getContentPane().add(textFieldFirstName);
+		textFieldFirstName.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(140, 123, 164, 22);
-		getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		textFieldLastName = new JTextField();
+		textFieldLastName.setBounds(140, 92, 164, 22);
+		getContentPane().add(textFieldLastName);
+		textFieldLastName.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Last Name*");
-		lblNewLabel_2.setBounds(12, 126, 116, 16);
-		getContentPane().add(lblNewLabel_2);
+		JLabel lblLastName = new JLabel("Last Name*");
+		lblLastName.setBounds(12, 95, 116, 16);
+		getContentPane().add(lblLastName);
 		
-		JLabel lblNewLabel_1 = new JLabel("First Name*");
-		lblNewLabel_1.setBounds(12, 91, 70, 16);
-		getContentPane().add(lblNewLabel_1);
+		JLabel lblFirstName = new JLabel("First Name*");
+		lblFirstName.setBounds(12, 60, 70, 16);
+		getContentPane().add(lblFirstName);
 		
-		JLabel lblAddressLine = new JLabel("Address line 1*");
-		lblAddressLine.setBounds(12, 187, 116, 16);
-		getContentPane().add(lblAddressLine);
+		JLabel lblAddress = new JLabel("Address line 1*");
+		lblAddress.setBounds(12, 156, 116, 16);
+		getContentPane().add(lblAddress);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(140, 181, 164, 22);
-		getContentPane().add(textField_2);
-		textField_2.setColumns(10);
+		textFieldAddress = new JTextField();
+		textFieldAddress.setBounds(140, 150, 164, 22);
+		getContentPane().add(textFieldAddress);
+		textFieldAddress.setColumns(10);
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(140, 308, 164, 22);
-		getContentPane().add(textField_5);
-		textField_5.setColumns(10);
+		textFieldPhone = new JTextField();
+		textFieldPhone.setBounds(140, 208, 164, 22);
+		getContentPane().add(textFieldPhone);
+		textFieldPhone.setColumns(10);
 		
-		JLabel lblPhoneNumberprimary = new JLabel("Mobile Number*");
-		lblPhoneNumberprimary.setBounds(12, 311, 116, 16);
-		getContentPane().add(lblPhoneNumberprimary);
+		JLabel lblPhone = new JLabel("Mobile Number*");
+		lblPhone.setBounds(12, 211, 116, 16);
+		getContentPane().add(lblPhone);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(140, 343, 164, 22);
-		getContentPane().add(textField_6);
+		textFieldPhone2 = new JTextField();
+		textFieldPhone2.setColumns(10);
+		textFieldPhone2.setBounds(140, 243, 164, 22);
+		getContentPane().add(textFieldPhone2);
 		
-		JLabel lblNewLabel_4 = new JLabel("Mobile Number");
-		lblNewLabel_4.setBounds(12, 346, 116, 16);
-		getContentPane().add(lblNewLabel_4);
+		JLabel lblPhone2 = new JLabel("Mobile Number");
+		lblPhone2.setBounds(12, 246, 116, 16);
+		getContentPane().add(lblPhone2);
 		
-		textField_7 = new JTextField();
-		textField_7.setBounds(140, 378, 164, 22);
-		getContentPane().add(textField_7);
-		textField_7.setColumns(10);
+		textFieldEmail = new JTextField();
+		textFieldEmail.setBounds(140, 278, 164, 22);
+		getContentPane().add(textFieldEmail);
+		textFieldEmail.setColumns(10);
 		
-		JLabel lblEmailAddress = new JLabel("E-mail address*");
-		lblEmailAddress.setBounds(12, 381, 116, 16);
-		getContentPane().add(lblEmailAddress);
-		
-		textField_8 = new JTextField();
-		textField_8.setBounds(140, 425, 164, 22);
-		getContentPane().add(textField_8);
-		textField_8.setColumns(10);
-		
-		JLabel lblNewLabel_5 = new JLabel("Salary*");
-		lblNewLabel_5.setBounds(12, 428, 84, 16);
-		getContentPane().add(lblNewLabel_5);
-		
-		JLabel lblRs = new JLabel("Rs.");
-		lblRs.setBounds(113, 428, 25, 16);
-		getContentPane().add(lblRs);
+		JLabel lblEmail = new JLabel("E-mail address*");
+		lblEmail.setBounds(12, 281, 116, 16);
+		getContentPane().add(lblEmail);
 		
 		JButton btnSubmit = new JButton("Submit");
-		btnSubmit.setBounds(268, 477, 97, 25);
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<Boolean> temp = new ArrayList<Boolean>();
+				
+				String first_name = textFieldFirstName.getText().trim();
+				String last_name = textFieldLastName.getText().trim();
+				String address = textFieldAddress.getText().trim();
+				String email = textFieldEmail.getText().trim();
+				String phone = textFieldPhone.getText().trim();
+				String alt_phone = textFieldPhone2.getText().trim();
+				
+				temp.add(GeneralValidations.nameValidation(first_name));
+				temp.add(GeneralValidations.nameValidation(last_name));
+				temp.add(GeneralValidations.addressValidation(address));
+				temp.add(GeneralValidations.emailValidation(email));
+				temp.add(GeneralValidations.phoneValidation(phone));
+				temp.add(GeneralValidations.optionalPhoneValidation(alt_phone));
+				
+				Boolean isGoodToGo = true;
+				
+				for (Boolean t: temp){
+					if (!t){
+						//Basic validation fail. Check the entries again
+						//Changing the font color
+						lblFirstName.setForeground(Color.red);
+						lblLastName.setForeground(Color.red);
+						lblAddress.setForeground(Color.red);
+						lblEmail.setForeground(Color.red);
+						lblPhone.setForeground(Color.red);
+						lblPhone2.setForeground(Color.red);
+						
+						//display a error message
+						JOptionPane.showMessageDialog(null, "Check the highlighted text and try again.", "Error", JOptionPane.ERROR_MESSAGE);
+						isGoodToGo = false;
+						break;
+					}
+				}
+				
+				if (isGoodToGo){
+					try {
+						String [] result = AddTeacherLogic.addTeacher(first_name, last_name, phone, alt_phone, address, email, "0");
+						JOptionPane.showMessageDialog(null, "Adding successful!\nTeacher id: "+result[0], "Successful", JOptionPane.INFORMATION_MESSAGE);
+						win.dispose();
+						main.setVisible(true);
+					} catch (IOException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				
+				
+			}
+		});
+		btnSubmit.setBounds(157, 335, 97, 25);
 		getContentPane().add(btnSubmit);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Mr.", "Miss.", "Mrs."}));
-		comboBox.setBounds(140, 53, 84, 22);
-		getContentPane().add(comboBox);
-		
-		JLabel lblDecoration = new JLabel("Decoration");
-		lblDecoration.setBounds(12, 56, 84, 16);
-		getContentPane().add(lblDecoration);
-		
-		JLabel lblSubjects = new JLabel("Subjects");
-		lblSubjects.setBounds(364, 88, 56, 16);
-		getContentPane().add(lblSubjects);
-		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Organ");
-		chckbxNewCheckBox.setBounds(338, 113, 113, 25);
-		getContentPane().add(chckbxNewCheckBox);
-		
-		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Violin");
-		chckbxNewCheckBox_1.setBounds(338, 143, 113, 25);
-		getContentPane().add(chckbxNewCheckBox_1);
-		
-		JCheckBox chckbxNewCheckBox_2 = new JCheckBox("Voice trianer");
-		chckbxNewCheckBox_2.setBounds(338, 173, 113, 25);
-		getContentPane().add(chckbxNewCheckBox_2);
-		
-		JCheckBox chckbxGitur = new JCheckBox("Gitur");
-		chckbxGitur.setBounds(338, 203, 113, 25);
-		getContentPane().add(chckbxGitur);
-		getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblNewLabel_1, lblAddressLine, lblNewLabel_2, lblPhoneNumberprimary, lblNewLabel_4, lblEmailAddress, lblNewLabel_5, lblRs, lblDecoration, lblNewLabel, comboBox, textField, textField_1, textField_2, textField_5, textField_6, textField_7, textField_8, btnSubmit}));
+		getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblFirstName, lblAddress, lblLastName, lblPhone, lblPhone2, lblEmail, lblNewLabel, textFieldFirstName, textFieldLastName, textFieldAddress, textFieldPhone, textFieldPhone2, textFieldEmail, btnSubmit}));
 
 	}
 }
