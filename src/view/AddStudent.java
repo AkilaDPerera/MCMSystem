@@ -11,6 +11,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 
+import dbConnection.Takes;
 import model.AddStudentLogic;
 import validation.GeneralValidations;
 
@@ -361,6 +362,7 @@ public class AddStudent extends JFrame {
 							lblFamilyId.setForeground(Color.red);
 							
 							
+							
 							//display a error message
 							JOptionPane.showMessageDialog(null, "Check the highlighted text and try again.", "Error", JOptionPane.ERROR_MESSAGE);
 							isGoodToGo = false;
@@ -371,8 +373,15 @@ public class AddStudent extends JFrame {
 					if (isGoodToGo){
 						try {
 							String [] result = AddStudentLogic.addStudentNewFam(first_name, last_name, phone, alt_phone, address, email, dob, gender, momName, momContact, dadName, dadContact, guardianName, guardianContact);
-						
+
 							JOptionPane.showMessageDialog(null, "Adding successful!\nstudent id: "+result[0]+"\nfamily id:"+result[1] , "Successful", JOptionPane.INFORMATION_MESSAGE);
+							
+							//If enrolment added
+							String classid = lblClass.getText();
+							if (!classid.equals("None")){
+								Takes.addEnrolment(classid, result[0]);
+								JOptionPane.showMessageDialog(null, "Class enrolment successful!", "Successful", JOptionPane.INFORMATION_MESSAGE);
+							}
 							
 							win.dispose();
 							main.setVisible(true);
@@ -429,6 +438,13 @@ public class AddStudent extends JFrame {
 									String [] result = AddStudentLogic.addStudentExistingFam2(first_name, last_name, phone, alt_phone, address, email, dob, gender, family_id);
 									
 									JOptionPane.showMessageDialog(null, "Adding successful!\nstudent id: "+result[0]+"\nfamily id:"+result[1] , "Successful", JOptionPane.INFORMATION_MESSAGE);
+									
+									//If enrolment added
+									String classid = lblClass.getText();
+									if (!classid.equals("None")){
+										Takes.addEnrolment(classid, result[0]);
+										JOptionPane.showMessageDialog(null, "Class enrolment successful!", "Successful", JOptionPane.INFORMATION_MESSAGE);
+									}
 									
 									win.dispose();
 									main.setVisible(true);
