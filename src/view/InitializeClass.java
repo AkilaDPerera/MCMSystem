@@ -1,23 +1,32 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Component;
 import javax.swing.JButton;
 import javax.swing.border.EtchedBorder;
+
+import model.AddClassLogic;
+import model.AddStudentLogic;
+import validation.GeneralValidations;
+
 import javax.swing.SwingConstants;
+import javax.swing.JTextPane;
 
 public class InitializeClass extends JFrame {
 
@@ -25,14 +34,11 @@ public class InitializeClass extends JFrame {
 	private JFrame win;
 	
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField txtOldGym;
-	private JTextField textField_2;
-	private JTextField txtHhmm;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
+	private JTextField textFieldCount;
+	private JTextField txtLocation;
+	private JTextField textFieldStartTime;
+	private JTextField txtEndTime;
+	private JTextField textFieldMonthlyfee;
 	private JTextField txtLine;
 	
 	private JLabel lblName;
@@ -40,6 +46,7 @@ public class InitializeClass extends JFrame {
 	private JLabel lblStdName;
 	private JLabel lblStdId;
 	private JTextField textFieldSubject;
+	private JTextField textFieldHourlyPay;
 
 	/**
 	 * Launch the application.
@@ -75,11 +82,11 @@ public class InitializeClass extends JFrame {
 		lblInitializeAClass.setBounds(185, 13, 119, 16);
 		contentPane.add(lblInitializeAClass);
 		
-		JLabel lblSubject = new JLabel("Subject");
+		JLabel lblSubject = new JLabel("Subject*");
 		lblSubject.setBounds(12, 115, 68, 16);
 		contentPane.add(lblSubject);
 		
-		JLabel lblTeacher = new JLabel("Teacher");
+		JLabel lblTeacher = new JLabel("Teacher*");
 		lblTeacher.setBounds(12, 67, 56, 16);
 		contentPane.add(lblTeacher);
 		
@@ -87,93 +94,63 @@ public class InitializeClass extends JFrame {
 		lblType.setBounds(12, 223, 56, 16);
 		contentPane.add(lblType);
 		
-		JComboBox comboBox_3 = new JComboBox();
+		JComboBox comboBoxType = new JComboBox();
 
-		comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"Induvidual", "Group"}));
-		comboBox_3.setBounds(64, 220, 124, 22);
-		contentPane.add(comboBox_3);
+		comboBoxType.setModel(new DefaultComboBoxModel(new String[] {"Induvidual", "Group"}));
+		comboBoxType.setBounds(64, 220, 124, 22);
+		contentPane.add(comboBoxType);
 		
 		JLabel lblDay = new JLabel("Day");
 		lblDay.setBounds(12, 315, 35, 16);
 		contentPane.add(lblDay);
 		
-		JComboBox comboBox_4 = new JComboBox();
-		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"Sunday", "Monday", "Tuesday", "Wednesay", "Thursday", "Friday", "Saturday"}));
-		comboBox_4.setBounds(60, 312, 92, 22);
-		contentPane.add(comboBox_4);
+		JComboBox comboBoxDay = new JComboBox();
+		comboBoxDay.setModel(new DefaultComboBoxModel(new String[] {"Sunday", "Monday", "Tuesday", "Wednesay", "Thursday", "Friday", "Saturday"}));
+		comboBoxDay.setBounds(60, 312, 92, 22);
+		contentPane.add(comboBoxDay);
 		
-		JLabel lblStartingTime = new JLabel("Starting Time :");
-		lblStartingTime.setBounds(12, 350, 92, 16);
+		JLabel lblStartingTime = new JLabel("Starting Time* :");
+		lblStartingTime.setBounds(12, 350, 106, 16);
 		contentPane.add(lblStartingTime);
 		
-		JLabel lblFinishingTime = new JLabel("Finishing Time :");
-		lblFinishingTime.setBounds(185, 350, 92, 16);
+		JLabel lblFinishingTime = new JLabel("Finishing Time* :");
+		lblFinishingTime.setBounds(185, 350, 111, 16);
 		contentPane.add(lblFinishingTime);
 		
-		textField_2 = new JTextField();
-		textField_2.setText("08:30");
-		textField_2.setBounds(107, 347, 42, 22);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
+		textFieldStartTime = new JTextField();
+		textFieldStartTime.setText("hh:mm");
+		textFieldStartTime.setBounds(108, 347, 50, 22);
+		contentPane.add(textFieldStartTime);
+		textFieldStartTime.setColumns(10);
 		
 		JLabel lblH = new JLabel("h");
-		lblH.setBounds(152, 350, 23, 16);
+		lblH.setBounds(165, 350, 23, 16);
 		contentPane.add(lblH);
 		
-		txtHhmm = new JTextField();
-		txtHhmm.setText("hh:mm");
-		txtHhmm.setBounds(289, 347, 42, 22);
-		contentPane.add(txtHhmm);
-		txtHhmm.setColumns(10);
+		txtEndTime = new JTextField();
+		txtEndTime.setText("hh:mm");
+		txtEndTime.setBounds(289, 347, 50, 22);
+		contentPane.add(txtEndTime);
+		txtEndTime.setColumns(10);
 		
 		JLabel label = new JLabel("h");
-		label.setBounds(336, 350, 23, 16);
+		label.setBounds(347, 350, 23, 16);
 		contentPane.add(label);
-		
-		textField_3 = new JTextField();
-		textField_3.setText("31");
-		textField_3.setBounds(228, 391, 23, 22);
-		contentPane.add(textField_3);
-		textField_3.setColumns(10);
 		
 		JLabel lblCommencingDate = new JLabel("Commencing Date (dd/mm/yyyy) :");
 		lblCommencingDate.setBounds(12, 394, 204, 16);
 		contentPane.add(lblCommencingDate);
 		
-		textField_4 = new JTextField();
-		textField_4.setText("12");
-		textField_4.setBounds(274, 391, 22, 22);
-		contentPane.add(textField_4);
-		textField_4.setColumns(10);
-		
-		textField_5 = new JTextField();
-		textField_5.setText("2016");
-		textField_5.setBounds(318, 391, 35, 22);
-		contentPane.add(textField_5);
-		textField_5.setColumns(10);
-		
-		JLabel label_1 = new JLabel("/");
-		label_1.setBounds(259, 394, 16, 16);
-		contentPane.add(label_1);
-		
-		JLabel label_2 = new JLabel("/");
-		label_2.setBounds(308, 394, 16, 16);
-		contentPane.add(label_2);
-		
-		JLabel lblMonthlyFee = new JLabel("Monthly fee");
-		lblMonthlyFee.setBounds(12, 436, 73, 16);
+		JLabel lblMonthlyFee = new JLabel("*Student monthly fee :");
+		lblMonthlyFee.setBounds(12, 436, 140, 16);
 		contentPane.add(lblMonthlyFee);
 		
-		textField_6 = new JTextField();
-		textField_6.setText("750.00");
-		textField_6.setAlignmentX(Component.LEFT_ALIGNMENT);
-		textField_6.setBounds(120, 433, 68, 22);
-		contentPane.add(textField_6);
-		textField_6.setColumns(10);
-		
-		JLabel lblRs = new JLabel("Rs.");
-		lblRs.setBounds(92, 436, 23, 16);
-		contentPane.add(lblRs);
+		textFieldMonthlyfee = new JTextField();
+		textFieldMonthlyfee.setText("750.00");
+		textFieldMonthlyfee.setAlignmentX(Component.LEFT_ALIGNMENT);
+		textFieldMonthlyfee.setBounds(152, 433, 68, 22);
+		contentPane.add(textFieldMonthlyfee);
+		textFieldMonthlyfee.setColumns(10);
 		
 		JPanel panel_induvidual = new JPanel();
 		panel_induvidual.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
@@ -181,12 +158,12 @@ public class InitializeClass extends JFrame {
 		contentPane.add(panel_induvidual);
 		panel_induvidual.setLayout(null);
 		
-		JLabel lblStudent = new JLabel("Student :");
-		lblStudent.setBounds(12, 57, 56, 16);
+		JLabel lblStudent = new JLabel("Student* :");
+		lblStudent.setBounds(12, 57, 68, 16);
 		panel_induvidual.add(lblStudent);
 		
-		JLabel lblLocation_1 = new JLabel("Address :");
-		lblLocation_1.setBounds(12, 86, 56, 16);
+		JLabel lblLocation_1 = new JLabel("Address* :");
+		lblLocation_1.setBounds(12, 86, 68, 16);
 		panel_induvidual.add(lblLocation_1);
 		
 		txtLine = new JTextField();
@@ -228,27 +205,28 @@ public class InitializeClass extends JFrame {
 		contentPane.add(panel_group);
 		panel_group.setLayout(null);
 		
-		JLabel lblHowMany = new JLabel("How many");
+		JLabel lblHowMany = new JLabel("How many*");
 		lblHowMany.setBounds(12, 45, 68, 16);
 		panel_group.add(lblHowMany);
 		
-		JLabel lblLocation = new JLabel("Location");
+		JLabel lblLocation = new JLabel("Location*");
 		lblLocation.setBounds(12, 74, 56, 16);
 		panel_group.add(lblLocation);
 		
-		textField = new JTextField();
-		textField.setBounds(91, 42, 35, 22);
-		panel_group.add(textField);
-		textField.setText("999");
-		textField.setColumns(10);
+		textFieldCount = new JTextField();
+		textFieldCount.setBounds(91, 42, 35, 22);
+		panel_group.add(textFieldCount);
+		textFieldCount.setText("999");
+		textFieldCount.setColumns(10);
 		
-		txtOldGym = new JTextField();
-		txtOldGym.setBounds(92, 71, 124, 22);
-		panel_group.add(txtOldGym);
-		txtOldGym.setText("Old gym");
-		txtOldGym.setColumns(10);
+		txtLocation = new JTextField();
+		txtLocation.setBounds(92, 71, 124, 22);
+		panel_group.add(txtLocation);
+		txtLocation.setText("Old gym");
+		txtLocation.setColumns(10);
 		
 		JButton btnSubmit = new JButton("Submit");
+		
 		btnSubmit.setBounds(199, 477, 97, 25);
 		contentPane.add(btnSubmit);
 		
@@ -291,14 +269,31 @@ public class InitializeClass extends JFrame {
 		contentPane.add(textFieldSubject);
 		textFieldSubject.setColumns(10);
 		
-		comboBox_3.addActionListener(new ActionListener() {
+		JButton btnDatepicker = new JButton("DatePicker");
+		btnDatepicker.setBounds(316, 390, 97, 25);
+		contentPane.add(btnDatepicker);
+		
+		JLabel lblDate = new JLabel("yyyy-mm-dd");
+		lblDate.setBounds(221, 394, 83, 16);
+		contentPane.add(lblDate);
+		
+		JLabel lblNewLabel = new JLabel("*Teachers hourly payment :");
+		lblNewLabel.setBounds(239, 436, 174, 16);
+		contentPane.add(lblNewLabel);
+		
+		textFieldHourlyPay = new JTextField();
+		textFieldHourlyPay.setBounds(402, 433, 68, 22);
+		contentPane.add(textFieldHourlyPay);
+		textFieldHourlyPay.setColumns(10);
+		
+		comboBoxType.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(comboBox_3.getSelectedIndex()==1){
+				if(comboBoxType.getSelectedIndex()==1){
 					panel_group.setVisible(true);
 					panel_induvidual.setVisible(false);
 
 					
-				}else if(comboBox_3.getSelectedIndex()==0){
+				}else if(comboBoxType.getSelectedIndex()==0){
 					panel_group.setVisible(false);
 					panel_induvidual.setVisible(true);
 
@@ -306,7 +301,130 @@ public class InitializeClass extends JFrame {
 			}
 		});
 		
-		
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ArrayList<Boolean> temp = new ArrayList<Boolean>();
+				
+				int type = comboBoxType.getSelectedIndex();
+				
+				String teacherId = lblID.getText();
+				String subject = textFieldSubject.getText().trim();
+				String day = comboBoxDay.getSelectedObjects().toString().trim();
+				String commenceDate = "2016-07-29";//lblDate.getText().trim();
+				String monthly_fee = textFieldMonthlyfee.getText().trim();
+				String hourly_pay = textFieldHourlyPay.getText().trim();
+				String start_time = textFieldStartTime.getText().trim();
+				String end_time = txtEndTime.getText().trim();
+				
+				
+				String count = textFieldCount.getText().trim();
+				String location = txtLocation.getText().trim();
+				
+				String std_id = lblStdId.getText().trim();
+				String address = txtLine.getText().trim();
+				
+				Boolean isGoodToGo = true;
+				
+				
+				temp.add(GeneralValidations.idValidation(teacherId));
+				temp.add(GeneralValidations.nameValidation(subject));
+				temp.add(GeneralValidations.salaryValidation(monthly_fee));
+				temp.add(GeneralValidations.salaryValidation(hourly_pay));
+				temp.add(GeneralValidations.isTime(start_time));
+				temp.add(GeneralValidations.isTime(end_time));
+
+				if (type==0){
+					//individual
+					temp.add(GeneralValidations.idValidation(std_id));
+					temp.add(GeneralValidations.addressValidation(address));
+
+					for (Boolean t: temp){
+						if (!t){
+							//Basic validation fail. Check the entries again
+							//Changing the font color
+							lblTeacher.setForeground(Color.red);
+							lblSubject.setForeground(Color.red);
+							lblStudent.setForeground(Color.red);
+							lblLocation_1.setForeground(Color.red);
+							lblHowMany.setForeground(Color.red);
+							lblLocation.setForeground(Color.red);
+							lblDay.setForeground(Color.red);
+							lblStartingTime.setForeground(Color.red);
+							lblFinishingTime.setForeground(Color.red);
+							lblCommencingDate.setForeground(Color.red);
+							lblMonthlyFee.setForeground(Color.red);
+							lblNewLabel.setForeground(Color.red);
+							
+							
+							//display a error message
+							JOptionPane.showMessageDialog(null, "Check the highlighted text and try again.", "Error", JOptionPane.ERROR_MESSAGE);
+							isGoodToGo = false;
+							break;
+						}
+					}
+					//No basic error found
+					if (isGoodToGo){
+						try {
+							String [] result = AddClassLogic.initializeInduvidualClass(teacherId, std_id, hourly_pay, subject, monthly_fee, commenceDate, start_time, end_time, address);
+						
+							JOptionPane.showMessageDialog(null, result[0], "Successful", JOptionPane.INFORMATION_MESSAGE);
+							
+							win.dispose();
+							main.setVisible(true);
+							
+						} catch (SQLException | IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+
+				}else{
+					//Group
+					temp.add(GeneralValidations.idValidation(count));
+					temp.add(GeneralValidations.nameValidation(location));
+					
+					for (Boolean t: temp){
+						if (!t){
+							//Basic validation fail. Check the entries again
+							//Changing the font color
+							lblTeacher.setForeground(Color.red);
+							lblSubject.setForeground(Color.red);
+							lblStudent.setForeground(Color.red);
+							lblLocation_1.setForeground(Color.red);
+							lblHowMany.setForeground(Color.red);
+							lblLocation.setForeground(Color.red);
+							lblDay.setForeground(Color.red);
+							lblStartingTime.setForeground(Color.red);
+							lblFinishingTime.setForeground(Color.red);
+							lblCommencingDate.setForeground(Color.red);
+							lblMonthlyFee.setForeground(Color.red);
+							lblNewLabel.setForeground(Color.red);
+
+							//display a error message
+							JOptionPane.showMessageDialog(null, "Check the highlighted text and try again.", "Error", JOptionPane.ERROR_MESSAGE);
+							isGoodToGo = false;
+							break;
+						}
+					}
+					//No basic error found
+					if (isGoodToGo){
+						try {
+							String [] result = AddClassLogic.initializeGroupClass(teacherId, hourly_pay, subject, monthly_fee, commenceDate, start_time, end_time, count, location);
+				
+							JOptionPane.showMessageDialog(null, result[0], "Info", JOptionPane.INFORMATION_MESSAGE);
+						
+							win.dispose();
+							main.setVisible(true);
+							
+						} catch (IOException | SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					}
+				}
+			}
+		);
 	}
 	
 	public void setNameId(String id, String name){
