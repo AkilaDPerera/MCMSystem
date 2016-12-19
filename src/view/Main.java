@@ -8,9 +8,18 @@ import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import dbConnection.ClassEntity;
+import dbConnection.GeneralQueries;
+import net.proteanit.sql.DbUtils;
+
 import javax.swing.ListSelectionModel;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -33,8 +42,11 @@ public class Main {
 
 	/**
 	 * Create the application.
+	 * @throws SQLException 
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
 	 */
-	public Main(String role, String username, String userid) {
+	public Main(String role, String username, String userid) throws FileNotFoundException, IOException, SQLException {
 		Main.role = role;
 		Main.username = username;
 		Main.userid = userid;
@@ -43,8 +55,11 @@ public class Main {
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @throws SQLException 
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
 	 */
-	private void initialize(String role, String username, String userid) {
+	private void initialize(String role, String username, String userid) throws FileNotFoundException, IOException, SQLException {
 		frmMusicClassManagement = new JFrame();
 		frmMusicClassManagement.setResizable(false);
 		frmMusicClassManagement.setTitle("Music Class Management System");
@@ -65,18 +80,8 @@ public class Main {
 		
 		table = new JTable();
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-			},
-			new String[] {
-				"Class-ID", "Subject", "Teacher", "On", "From"
-			}
-		));
+		table.setModel(DbUtils.resultSetToTableModel(GeneralQueries.getMainList()));
+		
 		scrollPane.setViewportView(table);
 		
 		JLabel lblCurrentClasses = new JLabel("Current classes");
@@ -189,6 +194,20 @@ public class Main {
 		JButton btnSalary = new JButton("Salary Details");
 		btnSalary.setBounds(12, 92, 184, 25);
 		panelTeacher.add(btnSalary);
+		
+		JButton btnRefresh = new JButton("Refresh");
+		btnRefresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					table.setModel(DbUtils.resultSetToTableModel(GeneralQueries.getMainList()));
+				} catch (IOException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnRefresh.setBounds(279, 354, 97, 25);
+		frmMusicClassManagement.getContentPane().add(btnRefresh);
 		panelTeacher.setVisible(false);
 		
 		if (role.equals("teacher")){
