@@ -33,7 +33,7 @@ public class AddClassLogic {
 		Teaches.addTeachesEntry(class_id, teacher_id, hourly_pay);
 		
 		//Create a entry in takes
-		Takes.addEnrolment(class_id, teacher_id);
+		Takes.addEnrolment(class_id, std_id);
 		
 		return new String [] {"Individual class initialization successful!\n Class Id: "+class_id};
 		
