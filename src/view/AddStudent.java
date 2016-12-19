@@ -55,6 +55,8 @@ public class AddStudent extends JFrame {
 	private JTextField textFieldDadContact;
 	private JTextField textFieldGuardianName;
 	private JTextField textFieldGuardianContact;
+	
+	private JLabel lblClass;
 
 	/**
 	 * Launch the application.
@@ -252,12 +254,26 @@ public class AddStudent extends JFrame {
 		getContentPane().add(btnPickDate);
 		
 		JButton btnSelectClass = new JButton("Select Class");
+		btnSelectClass.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SelectClass window;
+				try {
+					window = new SelectClass(win);
+					window.setVisible(true);
+					win.setVisible(false);
+				} catch (IOException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		btnSelectClass.setBounds(306, 76, 164, 25);
 		getContentPane().add(btnSelectClass);
 		
-		JLabel lblClass = new JLabel("None");
+		lblClass = new JLabel("None");
 		lblClass.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblClass.setBounds(358, 59, 112, 16);
+		lblClass.setBounds(414, 59, 56, 16);
 		getContentPane().add(lblClass);
 		getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblMobileNumber_2, textFieldFirstName, textFieldLastName, comboBoxGender, lblAddStudent, lblLastName, lblAddressLine, textFieldAddress, textFieldEmail, lblEmail, textFieldMobile, lblMobileNumber_1, textFieldMobile2, lblGender, lblDateOfBirth, lblFirstName}));
 		
@@ -436,7 +452,14 @@ public class AddStudent extends JFrame {
 
 		btnSubmit.setBounds(188, 625, 97, 25);
 		getContentPane().add(btnSubmit);
+		
+		JLabel lblClassId = new JLabel("Class ID: ");
+		lblClassId.setBounds(355, 59, 56, 16);
+		getContentPane().add(lblClassId);
 
 
+	}
+	public void setId(String id){
+		lblClass.setText(id);
 	}
 }

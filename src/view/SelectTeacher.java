@@ -30,6 +30,7 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import java.awt.Window.Type;
 
 public class SelectTeacher extends JFrame {
 	private InitializeClass submain;
@@ -62,6 +63,7 @@ public class SelectTeacher extends JFrame {
 	 * @throws FileNotFoundException 
 	 */
 	public SelectTeacher(JFrame submain) throws FileNotFoundException, IOException, SQLException {
+		setType(Type.POPUP);
 		this.submain = (InitializeClass) submain;
 		this.win = this;
 		

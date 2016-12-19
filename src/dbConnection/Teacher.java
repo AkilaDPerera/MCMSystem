@@ -43,26 +43,26 @@ public class Teacher {
 	}
 	
 	public static ResultSet searchById(String id) throws FileNotFoundException, IOException, SQLException{
-		String temp = "'"+id+"%'";
+		String temp = ""+id+"%";
 		Connection conn = (Connection) ConnectDb.getConnection();
 		PreparedStatement getList = (PreparedStatement) conn.prepareStatement("SELECT id, first_name AS 'First Name', last_name AS 'Last Name', phone AS 'Phone', alt_phone AS 'Phone (Optional)', address AS 'Address', email AS 'Email'  FROM `mcms`.`teacher` WHERE id LIKE ?;");
-		getList.setString(1, id);
+		getList.setString(1, temp);
 		return getList.executeQuery();
 	}
 	
 	public static ResultSet searchByFirstName(String name) throws FileNotFoundException, IOException, SQLException{
-		String temp = "'"+name+"%'";
+		String temp = ""+name+"%";
 		Connection conn = (Connection) ConnectDb.getConnection();
 		PreparedStatement getList = (PreparedStatement) conn.prepareStatement("SELECT id, first_name AS 'First Name', last_name AS 'Last Name', phone AS 'Phone', alt_phone AS 'Phone (Optional)', address AS 'Address', email AS 'Email'  FROM `mcms`.`teacher` WHERE first_name LIKE ?;");
-		getList.setString(1, name);
+		getList.setString(1, temp);
 		return getList.executeQuery();
 	}
 	
 	public static ResultSet searchByLastName(String name) throws FileNotFoundException, IOException, SQLException{
-		String temp = "'"+name+"%'";
+		String temp = ""+name+"%";
 		Connection conn = (Connection) ConnectDb.getConnection();
 		PreparedStatement getList = (PreparedStatement) conn.prepareStatement("SELECT id, first_name AS 'First Name', last_name AS 'Last Name', phone AS 'Phone', alt_phone AS 'Phone (Optional)', address AS 'Address', email AS 'Email'  FROM `mcms`.`teacher` WHERE last_name LIKE ?;");
-		getList.setString(1, name);
+		getList.setString(1, temp);
 		return getList.executeQuery();
 	}
 	
