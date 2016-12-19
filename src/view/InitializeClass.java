@@ -309,13 +309,12 @@ public class InitializeClass extends JFrame {
 				
 				String teacherId = lblID.getText();
 				String subject = textFieldSubject.getText().trim();
-				String day = comboBoxDay.getSelectedObjects().toString().trim();
+				String day = (String) comboBoxDay.getSelectedObjects()[0];
 				String commenceDate = "2016-07-29";//lblDate.getText().trim();
 				String monthly_fee = textFieldMonthlyfee.getText().trim();
 				String hourly_pay = textFieldHourlyPay.getText().trim();
 				String start_time = textFieldStartTime.getText().trim();
 				String end_time = txtEndTime.getText().trim();
-				
 				
 				String count = textFieldCount.getText().trim();
 				String location = txtLocation.getText().trim();
@@ -365,7 +364,7 @@ public class InitializeClass extends JFrame {
 					//No basic error found
 					if (isGoodToGo){
 						try {
-							String [] result = AddClassLogic.initializeInduvidualClass(teacherId, std_id, hourly_pay, subject, monthly_fee, commenceDate, start_time, end_time, address);
+							String [] result = AddClassLogic.initializeInduvidualClass(teacherId, std_id, hourly_pay, subject, monthly_fee, commenceDate, start_time, end_time, address, day);
 						
 							JOptionPane.showMessageDialog(null, result[0], "Successful", JOptionPane.INFORMATION_MESSAGE);
 							
@@ -409,7 +408,7 @@ public class InitializeClass extends JFrame {
 					//No basic error found
 					if (isGoodToGo){
 						try {
-							String [] result = AddClassLogic.initializeGroupClass(teacherId, hourly_pay, subject, monthly_fee, commenceDate, start_time, end_time, count, location);
+							String [] result = AddClassLogic.initializeGroupClass(teacherId, hourly_pay, subject, monthly_fee, commenceDate, start_time, end_time, count, location,day);
 				
 							JOptionPane.showMessageDialog(null, result[0], "Info", JOptionPane.INFORMATION_MESSAGE);
 						

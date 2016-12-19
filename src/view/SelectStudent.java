@@ -23,6 +23,7 @@ import javax.swing.JButton;
 import javax.swing.ListSelectionModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Window.Type;
 
 public class SelectStudent extends JFrame {
 	private InitializeClass submain;
@@ -55,6 +56,7 @@ public class SelectStudent extends JFrame {
 	 * Create the frame.
 	 */
 	public SelectStudent(JFrame submain) throws FileNotFoundException, IOException, SQLException {
+		setType(Type.POPUP);
 		this.submain = (InitializeClass) submain;
 		this.win = this;
 		
