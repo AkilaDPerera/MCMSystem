@@ -18,12 +18,12 @@ public class GeneralQueries {
 	
 	public static String[] getTeacherByClassId(String id) throws FileNotFoundException, IOException, SQLException{
 		Connection conn = (Connection) ConnectDb.getConnection();
-		PreparedStatement getList = (PreparedStatement) conn.prepareStatement("SELECT first_name, last_name, phone  FROM teacher JOIN teaches WHERE teacher.id=teaches.teacher_id AND class_id=?;");
+		PreparedStatement getList = (PreparedStatement) conn.prepareStatement("SELECT first_name, last_name, phone, teacher.id  FROM teacher JOIN teaches WHERE teacher.id=teaches.teacher_id AND class_id=?;");
 		getList.setString(1, id);
 		ResultSet rs = getList.executeQuery();
 		
 		if (rs.next()){
-			return new String[] {rs.getString(1), rs.getString(2), rs.getString(3)};
+			return new String[] {rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)};
 		}else{
 			return null;
 		}

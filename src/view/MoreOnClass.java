@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextPane;
 import javax.swing.JFormattedTextField;
 import javax.swing.JCheckBox;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.Window.Type;
 import java.text.DateFormat;
@@ -39,6 +40,11 @@ import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JTable;
+import javax.swing.JRadioButton;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 public class MoreOnClass extends JFrame implements SelectableTeacher{
 
@@ -49,6 +55,7 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 	private DateFormat dayName;
 	private JLabel lblSubsituteId;
 	private JTable table;
+	private ButtonGroup bg = new ButtonGroup();
 	
 	
 	/**
@@ -136,7 +143,7 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 		panel.add(lblSubjectName);
 		
 		JLabel lblTeacherName = new JLabel("New label");
-		lblTeacherName.setBounds(286, 27, 137, 16);
+		lblTeacherName.setBounds(286, 27, 107, 16);
 		panel.add(lblTeacherName);
 		
 		JLabel lblCount = new JLabel("21");
@@ -174,19 +181,40 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 		lblTeacher.setBounds(12, 13, 92, 16);
 		panel_1.add(lblTeacher);
 		
-		JCheckBox chckbxTeacher = new JCheckBox("present");
-		chckbxTeacher.setBounds(75, 9, 78, 25);
-		panel_1.add(chckbxTeacher);
-		
 		JLabel lblOr = new JLabel("or");
 		lblOr.setBounds(163, 13, 19, 16);
 		panel_1.add(lblOr);
 		
-		JButton btnSubsitute = new JButton("substitute");
-		btnSubsitute.addActionListener(new ActionListener() {
+		JLabel lblSubsituteTeacherId = new JLabel("Teacher Id: ");
+		lblSubsituteTeacherId.setBounds(303, 13, 71, 16);
+		panel_1.add(lblSubsituteTeacherId);
+		
+		lblSubsituteId = new JLabel("ID");
+		lblSubsituteId.setBounds(375, 13, 56, 16);
+		panel_1.add(lblSubsituteId);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setBounds(12, 66, 785, 272);
+		panel_1.add(scrollPane);
+		
+		JLabel lblTeacherid = new JLabel("");
+	    lblTeacherid.setBounds(395, 27, 28, 16);
+	    panel.add(lblTeacherid); 
+	    
+		JRadioButton rdbtnPresent = new JRadioButton("present");
+		rdbtnPresent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				chckbxTeacher.setSelected(false);
-				chckbxTeacher.setEnabled(false);
+				lblSubsituteId.setText(lblTeacherid.getText());
+			}
+		});
+		
+		rdbtnPresent.setBounds(77, 9, 78, 25);
+		panel_1.add(rdbtnPresent);
+		
+		JRadioButton rdbtnSubsitute = new JRadioButton("subsitute");
+		rdbtnSubsitute.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				SelectTeacher window;
 				try {
 					window = new SelectTeacher(win);
@@ -198,21 +226,12 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 				}
 			}
 		});
-		btnSubsitute.setBounds(194, 9, 97, 25);
-		panel_1.add(btnSubsitute);
+
+		bg.add(rdbtnSubsitute);
+		bg.add(rdbtnPresent);
 		
-		JLabel lblSubsituteTeacherId = new JLabel("Subsitute teacher Id: ");
-		lblSubsituteTeacherId.setBounds(303, 13, 124, 16);
-		panel_1.add(lblSubsituteTeacherId);
-		
-		lblSubsituteId = new JLabel("ID");
-		lblSubsituteId.setBounds(427, 13, 56, 16);
-		panel_1.add(lblSubsituteId);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(12, 66, 785, 272);
-		panel_1.add(scrollPane);
+		rdbtnSubsitute.setBounds(190, 9, 84, 25);
+		panel_1.add(rdbtnSubsitute);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
@@ -271,6 +290,9 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 	    lblDayName.setText(initialData[3]);
 	    lblStart.setText(initialData[4]);
 	    lblEnd.setText(initialData[5]);
+	    lblTeacherid.setText(initialData[7]);
+	    
+	    
 	    
 	    if (!dayName.format(dateObj).equals(initialData[3])){
 	    	panel_1.setEnabled(false);
@@ -279,12 +301,14 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 	    }
 	    if("1".equals(initialData[6])){
 	    	btnEnrollExistingStd.setEnabled(false);
-	    	btnSubsitute.setEnabled(false);
+	    	rdbtnSubsitute.setEnabled(false);
 	    }
 		
 		JLabel lblNewLabel_6 = new JLabel("Attendence and other student Info...");
 		lblNewLabel_6.setBounds(12, 48, 345, 16);
 		panel_1.add(lblNewLabel_6);
+		
+		
 		
 		JButton btnBackToMain = new JButton("Back To Main");
 		btnBackToMain.addActionListener(new ActionListener() {
