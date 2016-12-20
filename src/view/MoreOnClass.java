@@ -85,12 +85,12 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 		fullDate = new SimpleDateFormat("yyyy-MM-dd EEEE");
 		dayName = new SimpleDateFormat("EEEE");
 		
-		setType(Type.POPUP);
+		setType(Type.UTILITY);
 		this.main = main;
 		this.win = this;
 		setTitle("More");
 		setBounds(100, 100, 861, 594);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
 		

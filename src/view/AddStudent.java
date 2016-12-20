@@ -40,6 +40,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.JFormattedTextField.AbstractFormatter;
 import javax.swing.SwingConstants;
+import java.awt.Window.Type;
 
 public class AddStudent extends JFrame {
 	private JFrame main;
@@ -84,12 +85,13 @@ public class AddStudent extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddStudent(JFrame main) { // (JFrame main)
+	public AddStudent(JFrame main) {
+		setType(Type.UTILITY); // (JFrame main)
 		this.main = main;
 		win = this;
 		setTitle("Add Student");
 		setBounds(100, 100, 500, 719);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		getContentPane().setLayout(null);
 
 		JLabel lblAddStudent = new JLabel("Add Student");
@@ -483,7 +485,7 @@ public class AddStudent extends JFrame {
 			}
 		});
 
-		btnSubmit.setBounds(188, 625, 97, 25);
+		btnSubmit.setBounds(303, 625, 97, 25);
 		getContentPane().add(btnSubmit);
 
 		JLabel lblClassId = new JLabel("Class ID: ");
@@ -498,6 +500,16 @@ public class AddStudent extends JFrame {
 		});
 		dateChooser_1.setBounds(306, 153, 164, 22);
 		getContentPane().add(dateChooser_1);
+		
+		JButton btnBackToMain = new JButton("Back");
+		btnBackToMain.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				win.dispose();
+				main.setVisible(true);
+			}
+		});
+		btnBackToMain.setBounds(57, 625, 97, 25);
+		getContentPane().add(btnBackToMain);
 //		dob = ((JTextField) dateChooser_1.getDateEditor().getUiComponent()).getText();
 		// System.out.println(((JTextField)dateChooser_1.getDateEditor().getUiComponent()).getText());
 

@@ -3,6 +3,7 @@ package view;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import java.awt.Window.Type;
 
 public class StudentEnrollment extends JFrame {
 
@@ -26,9 +27,10 @@ public class StudentEnrollment extends JFrame {
 	 * Create the frame.
 	 */
 	public StudentEnrollment() {
+		setType(Type.UTILITY);
 		setTitle("Student Enrollments");
 		setBounds(100, 100, 500, 300);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
 	}
 

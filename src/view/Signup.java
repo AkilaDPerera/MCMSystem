@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.Window.Type;
 
 public class Signup extends JFrame {
 	private JPasswordField passwordField;
@@ -36,9 +37,10 @@ public class Signup extends JFrame {
 	 * Create the frame.
 	 */
 	public Signup() {
+		setType(Type.UTILITY);
 		setTitle("Sign up");
 		setBounds(100, 100, 331, 299);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
 		JComboBox comboBox = new JComboBox();
@@ -85,8 +87,12 @@ public class Signup extends JFrame {
 		textField_1.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Submit");
-		btnNewButton.setBounds(94, 212, 97, 25);
+		btnNewButton.setBounds(191, 221, 97, 25);
 		getContentPane().add(btnNewButton);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.setBounds(28, 221, 97, 25);
+		getContentPane().add(btnBack);
 
 	}
 }
