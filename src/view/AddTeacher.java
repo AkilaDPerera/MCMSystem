@@ -55,7 +55,7 @@ public class AddTeacher extends JFrame {
 	 * Create the frame.
 	 */
 	public AddTeacher(JFrame main) {
-		setType(Type.UTILITY);
+		setType(Type.POPUP);
 		this.main = main;
 		this.win = this;
 		setTitle("Add Teacher");

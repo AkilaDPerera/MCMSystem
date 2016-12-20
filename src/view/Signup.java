@@ -51,9 +51,10 @@ public class Signup extends JFrame implements SelectableTeacher {
 	 * Create the frame.
 	 */
 	public Signup(JFrame main) {
+		setResizable(false);
 		this.main = main;
 		this.win = this;
-		setType(Type.UTILITY);
+		setType(Type.POPUP);
 		setTitle("Sign up");
 		setBounds(100, 100, 363, 369);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);

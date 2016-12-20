@@ -86,7 +86,7 @@ public class AddStudent extends JFrame {
 	 * Create the frame.
 	 */
 	public AddStudent(JFrame main) {
-		setType(Type.UTILITY); // (JFrame main)
+		setType(Type.POPUP); // (JFrame main)
 		this.main = main;
 		win = this;
 		setTitle("Add Student");

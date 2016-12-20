@@ -27,7 +27,7 @@ public class StudentEnrollment extends JFrame {
 	 * Create the frame.
 	 */
 	public StudentEnrollment() {
-		setType(Type.UTILITY);
+		setType(Type.POPUP);
 		setTitle("Student Enrollments");
 		setBounds(100, 100, 500, 300);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
