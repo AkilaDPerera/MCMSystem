@@ -27,6 +27,7 @@ import validation.GeneralValidations;
 
 import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
+import com.toedter.calendar.JDateChooser;
 
 public class InitializeClass extends JFrame implements SelectableTeacher {
 
@@ -51,23 +52,27 @@ public class InitializeClass extends JFrame implements SelectableTeacher {
 	/**
 	 * Launch the application.
 	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					InitializeClass frame = new InitializeClass();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
+	private static JDateChooser dateChooser;
+	private static String commenceDate=null;
+	
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					InitializeClass frame = new InitializeClass();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
 	 */
-	public InitializeClass(JFrame main) {
+	public InitializeClass(JFrame main) {//
 		this.main = main;
 		this.win = this;
 		setTitle("Initialize Class");
@@ -137,7 +142,7 @@ public class InitializeClass extends JFrame implements SelectableTeacher {
 		label.setBounds(347, 350, 23, 16);
 		contentPane.add(label);
 		
-		JLabel lblCommencingDate = new JLabel("Commencing Date (dd/mm/yyyy) :");
+		JLabel lblCommencingDate = new JLabel("Commencing Date (yyyy/mm/dd) :");
 		lblCommencingDate.setBounds(12, 394, 204, 16);
 		contentPane.add(lblCommencingDate);
 		
@@ -269,14 +274,6 @@ public class InitializeClass extends JFrame implements SelectableTeacher {
 		contentPane.add(textFieldSubject);
 		textFieldSubject.setColumns(10);
 		
-		JButton btnDatepicker = new JButton("DatePicker");
-		btnDatepicker.setBounds(316, 390, 97, 25);
-		contentPane.add(btnDatepicker);
-		
-		JLabel lblDate = new JLabel("yyyy-mm-dd");
-		lblDate.setBounds(221, 394, 83, 16);
-		contentPane.add(lblDate);
-		
 		JLabel lblNewLabel = new JLabel("*Teachers hourly payment :");
 		lblNewLabel.setBounds(239, 436, 174, 16);
 		contentPane.add(lblNewLabel);
@@ -285,6 +282,17 @@ public class InitializeClass extends JFrame implements SelectableTeacher {
 		textFieldHourlyPay.setBounds(402, 433, 68, 22);
 		contentPane.add(textFieldHourlyPay);
 		textFieldHourlyPay.setColumns(10);
+		
+		dateChooser = new JDateChooser();
+		dateChooser.setDateFormatString("yyyy-MM-dd");
+		dateChooser.setBounds(228, 394, 142, 22);
+		contentPane.add(dateChooser);
+		
+		dateChooser.getCalendarButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+
 		
 		comboBoxType.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -310,7 +318,12 @@ public class InitializeClass extends JFrame implements SelectableTeacher {
 				String teacherId = lblID.getText();
 				String subject = textFieldSubject.getText().trim();
 				String day = (String) comboBoxDay.getSelectedObjects()[0];
-				String commenceDate = "2016-07-29";//lblDate.getText().trim();
+				
+				try{
+					commenceDate = ((JTextField) dateChooser.getDateEditor().getUiComponent()).getText();
+				}catch(Exception ee){}
+				
+				
 				String monthly_fee = textFieldMonthlyfee.getText().trim();
 				String hourly_pay = textFieldHourlyPay.getText().trim();
 				String start_time = textFieldStartTime.getText().trim();
@@ -326,6 +339,7 @@ public class InitializeClass extends JFrame implements SelectableTeacher {
 				
 				
 				temp.add(GeneralValidations.idValidation(teacherId));
+				temp.add(GeneralValidations.dobValidation(commenceDate));
 				temp.add(GeneralValidations.nameValidation(subject));
 				temp.add(GeneralValidations.salaryValidation(monthly_fee));
 				temp.add(GeneralValidations.salaryValidation(hourly_pay));
