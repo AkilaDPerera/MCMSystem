@@ -210,6 +210,13 @@ public class Main {
 		panelAdmin.add(btnInitializeAClass);
 		
 		JButton btnAddUser = new JButton("Add System User");
+		btnAddUser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Signup window = new Signup(frmMusicClassManagement);
+				window.setVisible(true);
+				frmMusicClassManagement.setVisible(false);
+			}
+		});
 		btnAddUser.setBounds(19, 161, 177, 25);
 		panelAdmin.add(btnAddUser);
 		

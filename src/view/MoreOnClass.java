@@ -431,7 +431,7 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 
 
 	@Override
-	public void setNameId(String id, String name) {
+	public void setNameId(String id, String name, String email) {
 		lblSubsituteId.setText(id);
 		try {
 			Session.editSession(session_id, lblSubsituteId.getText(), "0");

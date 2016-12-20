@@ -10,6 +10,15 @@ public class GeneralValidations {
 			return false;
 		}
 	}
+	
+	public static boolean usernameValidation(String name){
+		name = name.trim();
+		if (name.matches("[A-Za-z]+") && name.length()<50){
+			return true;
+		}else{
+			return false;
+		}
+	}
 
 	public static boolean dobValidation(String dob){
 		if (dob!=null){

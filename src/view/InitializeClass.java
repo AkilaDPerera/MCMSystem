@@ -452,15 +452,17 @@ public class InitializeClass extends JFrame implements SelectableTeacher {
 		);
 	}
 	
-	public void setNameId(String id, String name){
-		lblName.setText(name);
-		lblID.setText(id);
-	}
 	public void setStdNameId(String id, String name){
 		lblStdId.setText(id);
 		lblStdName.setText(name);
 	}
 	public void setAddress(String address){
 		txtLine.setText(address);
+	}
+
+	@Override
+	public void setNameId(String id, String name, String email) {
+		lblName.setText(name);
+		lblID.setText(id);	
 	}
 }
