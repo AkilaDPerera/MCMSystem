@@ -53,13 +53,13 @@ public class SelectClass extends JFrame {
 	 * @throws FileNotFoundException 
 	 */
 	public SelectClass(JFrame submain) throws FileNotFoundException, IOException, SQLException {
-		setType(Type.POPUP);
+		setType(Type.UTILITY);
 		this.submain = (AddStudent) submain;
 		this.win = this;
 		
 		setTitle("Select Class");
 		setBounds(100, 100, 880, 520);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
 		JLabel label = new JLabel("Select Student");

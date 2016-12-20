@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.Window.Type;
 
 public class AddTeacher extends JFrame {
 	private JFrame main;
@@ -54,11 +55,12 @@ public class AddTeacher extends JFrame {
 	 * Create the frame.
 	 */
 	public AddTeacher(JFrame main) {
+		setType(Type.UTILITY);
 		this.main = main;
 		this.win = this;
 		setTitle("Add Teacher");
 		setBounds(100, 100, 418, 446);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Add Teacher");
@@ -173,8 +175,18 @@ public class AddTeacher extends JFrame {
 				
 			}
 		});
-		btnSubmit.setBounds(157, 335, 97, 25);
+		btnSubmit.setBounds(259, 335, 97, 25);
 		getContentPane().add(btnSubmit);
+		
+		JButton btnNewButton = new JButton("Back");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				win.dispose();
+				main.setVisible(true);
+			}
+		});
+		btnNewButton.setBounds(31, 335, 97, 25);
+		getContentPane().add(btnNewButton);
 		getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblFirstName, lblAddress, lblLastName, lblPhone, lblPhone2, lblEmail, lblNewLabel, textFieldFirstName, textFieldLastName, textFieldAddress, textFieldPhone, textFieldPhone2, textFieldEmail, btnSubmit}));
 
 	}
