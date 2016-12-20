@@ -498,6 +498,7 @@ public class AddStudent extends JFrame {
 		});
 		dateChooser_1.setBounds(306, 153, 164, 22);
 		getContentPane().add(dateChooser_1);
+//		dob = ((JTextField) dateChooser_1.getDateEditor().getUiComponent()).getText();
 		// System.out.println(((JTextField)dateChooser_1.getDateEditor().getUiComponent()).getText());
 
 	}
