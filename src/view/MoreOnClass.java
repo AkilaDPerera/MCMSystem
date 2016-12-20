@@ -93,7 +93,7 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 		dayName = new SimpleDateFormat("EEEE");
 		date = new SimpleDateFormat("yyyy-MM-dd");
 		
-		setType(Type.UTILITY);
+		setType(Type.POPUP);
 		this.main = main;
 		this.win = this;
 		setTitle("More");
@@ -172,7 +172,7 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 		panel.add(lblEnd);
 		
 		JLabel lblDayName = new JLabel("New label");
-		lblDayName.setBounds(469, 27, 56, 16);
+		lblDayName.setBounds(469, 27, 89, 16);
 		panel.add(lblDayName);
 		
 		

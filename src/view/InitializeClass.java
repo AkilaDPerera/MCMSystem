@@ -74,7 +74,7 @@ public class InitializeClass extends JFrame implements SelectableTeacher {
 	 * Create the frame.
 	 */
 	public InitializeClass(JFrame main) {
-		setType(Type.UTILITY);//
+		setType(Type.POPUP);//
 		this.main = main;
 		this.win = this;
 		setTitle("Initialize Class");
@@ -112,7 +112,7 @@ public class InitializeClass extends JFrame implements SelectableTeacher {
 		contentPane.add(lblDay);
 		
 		JComboBox comboBoxDay = new JComboBox();
-		comboBoxDay.setModel(new DefaultComboBoxModel(new String[] {"Sunday", "Monday", "Tuesday", "Wednesay", "Thursday", "Friday", "Saturday"}));
+		comboBoxDay.setModel(new DefaultComboBoxModel(new String[] {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"}));
 		comboBoxDay.setBounds(60, 312, 92, 22);
 		contentPane.add(comboBoxDay);
 		

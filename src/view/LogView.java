@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
+import java.awt.Window.Type;
 
 public class LogView extends JFrame {
 
@@ -42,6 +43,7 @@ public class LogView extends JFrame {
 //	 * Create the frame.
 //	 */
 	public LogView() {
+		setType(Type.POPUP);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 907, 530);
 		contentPane = new JPanel();

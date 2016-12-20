@@ -63,7 +63,7 @@ public class SelectTeacher extends JFrame {
 	 * @throws FileNotFoundException 
 	 */
 	public SelectTeacher(JFrame submain) throws FileNotFoundException, IOException, SQLException {
-		setType(Type.UTILITY);
+		setType(Type.POPUP);
 		this.submain = (SelectableTeacher) submain;
 		this.win = this;
 		
