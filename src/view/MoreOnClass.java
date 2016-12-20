@@ -267,7 +267,7 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 	    lblCount.setText(initialData[2]);
 	    lblDayName.setText(initialData[3]);
 	    lblStart.setText(initialData[4]);
-	    lblEnd.setText(initialData[4]);
+	    lblEnd.setText(initialData[5]);
 		
 		JLabel lblNewLabel_6 = new JLabel("Attendence and other student Info...");
 		lblNewLabel_6.setBounds(12, 48, 345, 16);
