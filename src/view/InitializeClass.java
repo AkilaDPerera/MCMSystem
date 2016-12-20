@@ -28,6 +28,7 @@ import validation.GeneralValidations;
 import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 import com.toedter.calendar.JDateChooser;
+import java.awt.Window.Type;
 
 public class InitializeClass extends JFrame implements SelectableTeacher {
 
@@ -72,11 +73,12 @@ public class InitializeClass extends JFrame implements SelectableTeacher {
 	/**
 	 * Create the frame.
 	 */
-	public InitializeClass(JFrame main) {//
+	public InitializeClass(JFrame main) {
+		setType(Type.UTILITY);//
 		this.main = main;
 		this.win = this;
 		setTitle("Initialize Class");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 500, 560);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -232,7 +234,7 @@ public class InitializeClass extends JFrame implements SelectableTeacher {
 		
 		JButton btnSubmit = new JButton("Submit");
 		
-		btnSubmit.setBounds(199, 477, 97, 25);
+		btnSubmit.setBounds(298, 477, 97, 25);
 		contentPane.add(btnSubmit);
 		
 		JButton btnNewButton_1 = new JButton("Select Teacher");
@@ -287,6 +289,16 @@ public class InitializeClass extends JFrame implements SelectableTeacher {
 		dateChooser.setDateFormatString("yyyy-MM-dd");
 		dateChooser.setBounds(228, 394, 142, 22);
 		contentPane.add(dateChooser);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				win.dispose();
+				main.setVisible(true);
+			}
+		});
+		btnBack.setBounds(78, 477, 97, 25);
+		contentPane.add(btnBack);
 		
 		dateChooser.getCalendarButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
