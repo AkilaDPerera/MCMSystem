@@ -23,7 +23,9 @@ import javax.swing.SwingConstants;
 import com.mysql.fabric.xmlrpc.base.Data;
 import com.mysql.jdbc.ResultSetMetaData;
 
+import dbConnection.Attendance;
 import dbConnection.GeneralQueries;
+import dbConnection.Session;
 import dbConnection.Student;
 import model.MoreOnClassLogic;
 
@@ -45,6 +47,8 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MoreOnClass extends JFrame implements SelectableTeacher{
 
@@ -53,9 +57,12 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 	private Date dateObj;
 	private DateFormat fullDate;
 	private DateFormat dayName;
+	private DateFormat date;
 	private JLabel lblSubsituteId;
 	private JTable table;
 	private ButtonGroup bg = new ButtonGroup();
+	
+	private static String session_id;
 	
 	
 	/**
@@ -84,6 +91,7 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 		dateObj = new Date();
 		fullDate = new SimpleDateFormat("yyyy-MM-dd EEEE");
 		dayName = new SimpleDateFormat("EEEE");
+		date = new SimpleDateFormat("yyyy-MM-dd");
 		
 		setType(Type.UTILITY);
 		this.main = main;
@@ -93,6 +101,7 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("Will the class be held today?");
 		
 		JLabel lblCurrentDate = new JLabel("Today : " + fullDate.format(dateObj));
 		lblCurrentDate.setHorizontalAlignment(SwingConstants.CENTER);
@@ -115,11 +124,11 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Teacher's name:");
-		lblNewLabel_1.setBounds(180, 27, 99, 16);
+		lblNewLabel_1.setBounds(169, 27, 99, 16);
 		panel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_5 = new JLabel("Num. of Student:");
-		lblNewLabel_5.setBounds(180, 56, 99, 16);
+		lblNewLabel_5.setBounds(169, 56, 99, 16);
 		panel.add(lblNewLabel_5);
 		
 		JButton btnEnrollExistingStd = new JButton("Enroll existing std");
@@ -143,11 +152,11 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 		panel.add(lblSubjectName);
 		
 		JLabel lblTeacherName = new JLabel("New label");
-		lblTeacherName.setBounds(286, 27, 107, 16);
+		lblTeacherName.setBounds(275, 27, 107, 16);
 		panel.add(lblTeacherName);
 		
 		JLabel lblCount = new JLabel("21");
-		lblCount.setBounds(286, 56, 56, 16);
+		lblCount.setBounds(275, 56, 56, 16);
 		panel.add(lblCount);
 		
 		JLabel lblTo = new JLabel("To: ");
@@ -166,16 +175,15 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 		lblDayName.setBounds(469, 27, 56, 16);
 		panel.add(lblDayName);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Will the class be held today?");
-		chckbxNewCheckBox.setHorizontalAlignment(SwingConstants.CENTER);
-		chckbxNewCheckBox.setFont(new Font("Tahoma", Font.BOLD, 14));
-		chckbxNewCheckBox.setBounds(22, 14, 523, 25);
-		getContentPane().add(chckbxNewCheckBox);
+		
+		
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(22, 164, 809, 348);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
+		
+		
 		
 		JLabel lblTeacher = new JLabel("Teacher :");
 		lblTeacher.setBounds(12, 13, 92, 16);
@@ -198,14 +206,22 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 		scrollPane.setBounds(12, 66, 785, 272);
 		panel_1.add(scrollPane);
 		
+		
 		JLabel lblTeacherid = new JLabel("");
-	    lblTeacherid.setBounds(395, 27, 28, 16);
+	    lblTeacherid.setBounds(384, 27, 28, 16);
 	    panel.add(lblTeacherid); 
 	    
 		JRadioButton rdbtnPresent = new JRadioButton("present");
+		rdbtnPresent.setEnabled(false);
 		rdbtnPresent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				lblSubsituteId.setText(lblTeacherid.getText());
+				try {
+					Session.editSession(session_id, lblSubsituteId.getText(), "1");
+				} catch (IOException | SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		
@@ -213,6 +229,7 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 		panel_1.add(rdbtnPresent);
 		
 		JRadioButton rdbtnSubsitute = new JRadioButton("subsitute");
+		rdbtnSubsitute.setEnabled(false);
 		rdbtnSubsitute.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SelectTeacher window;
@@ -234,6 +251,28 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 		panel_1.add(rdbtnSubsitute);
 		
 		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				int index = table.getSelectedRow();
+				String student_id = table.getValueAt(index, 0).toString();
+				
+				//attendence
+				String present = table.getValueAt(index, 3).toString();
+				try {
+					if (present.equals("true")){
+						Attendance.editAttendence(session_id, student_id, "1");
+					}else{
+						Attendance.editAttendence(session_id, student_id, "0");
+					}
+				} catch (IOException | SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+		});
+		table.setEnabled(false);
 		scrollPane.setViewportView(table);
 		
 		//Creating model as requirement
@@ -317,8 +356,76 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 				main.setVisible(true);
 			}
 		});
-		btnBackToMain.setBounds(330, 511, 143, 25);
+		btnBackToMain.setBounds(336, 516, 143, 25);
 		getContentPane().add(btnBackToMain);
+		
+		
+		
+		chckbxNewCheckBox.setHorizontalAlignment(SwingConstants.CENTER);
+		chckbxNewCheckBox.setFont(new Font("Tahoma", Font.BOLD, 14));
+		chckbxNewCheckBox.setBounds(22, 14, 523, 25);
+		getContentPane().add(chckbxNewCheckBox);
+		
+		
+		//If already initialized get the initial data
+		
+		String[] temp = Session.getSession(class_id, date.format(dateObj));
+		if (temp!=null){
+			//From session
+			session_id= temp[0];
+			chckbxNewCheckBox.setSelected(true);
+			chckbxNewCheckBox.setEnabled(false);
+			table.setEnabled(true);
+			rdbtnPresent.setEnabled(true);
+			rdbtnSubsitute.setEnabled(true);
+			lblSubsituteId.setText(temp[1]);
+			if (temp[2].equals("1")){
+				rdbtnPresent.setSelected(true);
+			}else{
+				rdbtnSubsitute.setSelected(true);
+			}
+			
+			//from attendence
+			int i = 0;
+			while (i<table.getRowCount()){
+				String student_id = table.getValueAt(i, 0).toString();
+				String present = Attendance.getAttendence(session_id, student_id);
+				
+				if (present.equals("1")){
+					table.setValueAt(true, i, 3);
+				}else{
+					table.setValueAt(false, i, 3);
+				}
+				i++;
+			}
+			
+		}
+		
+		
+		chckbxNewCheckBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(chckbxNewCheckBox.isSelected()){
+					table.setEnabled(true);
+					rdbtnPresent.setEnabled(true);
+					rdbtnSubsitute.setEnabled(true);
+					chckbxNewCheckBox.setEnabled(false);
+					try {
+						session_id = Session.CreateSession(class_id, date.format(dateObj));
+						ResultSet rs = GeneralQueries.getStudentsByClassId(class_id);
+						
+						while (rs.next()){
+							String student_id = rs.getString(1);
+							Attendance.setAttendence(session_id, student_id, "0");
+						}
+						
+					} catch (IOException | SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+				}
+			}
+		});
 
 	}
 
@@ -326,5 +433,11 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 	@Override
 	public void setNameId(String id, String name) {
 		lblSubsituteId.setText(id);
+		try {
+			Session.editSession(session_id, lblSubsituteId.getText(), "0");
+		} catch (IOException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

@@ -15,8 +15,9 @@ public class MoreOnClassLogic {
 		String[] teacher_details = GeneralQueries.getTeacherByClassId(class_id); // first_name, last_name, phone, teacherId
 		String count = Takes.getStdCountByclassId(class_id);
 		return new String [] {class_details[0], teacher_details[0]+" "+teacher_details[1], count, class_details[4], class_details[2], class_details[3], class_details[1], teacher_details[3]};
-		
 	}
+	
+	
 
 //	public static void main(String[] args) {
 //		// TODO Auto-generated method stub
