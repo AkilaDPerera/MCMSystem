@@ -12,7 +12,7 @@ public class GeneralQueries {
 	
 	public static ResultSet getMainList() throws FileNotFoundException, IOException, SQLException{
 		Connection conn = (Connection) ConnectDb.getConnection();
-		PreparedStatement getList = (PreparedStatement) conn.prepareStatement("SELECT class.id AS 'Class-ID', subject AS 'Subject', first_name AS 'Teacher Name', day AS 'Day', start_time AS 'At' FROM class, teaches, teacher WHERE class.id=teaches.class_id AND teacher.id=teaches.teacher_id;");
+		PreparedStatement getList = (PreparedStatement) conn.prepareStatement("SELECT class.id AS 'Class-ID', subject AS 'Subject', first_name AS 'Teacher Name', class_type AS 'Class Type', day AS 'Day', start_time AS 'At' FROM class, teaches, teacher WHERE class.id=teaches.class_id AND teacher.id=teaches.teacher_id;");
 		return getList.executeQuery();
 	}
 	
@@ -28,6 +28,13 @@ public class GeneralQueries {
 			return null;
 		}
 	}
+	public static ResultSet getStudentsByClassId(String class_id) throws FileNotFoundException, IOException, SQLException {
+		Connection conn = (Connection) ConnectDb.getConnection();
+		PreparedStatement getList = (PreparedStatement) conn.prepareStatement("SELECT student_id, first_name, last_name FROM takes, student WHERE takes.student_id=student.id AND takes.class_id=?;");
+		getList.setString(1, class_id);
+		return getList.executeQuery();
+	}
+	
 	
 
 //	public static void main(String[] args) {

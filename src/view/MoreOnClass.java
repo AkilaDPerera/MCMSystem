@@ -22,6 +22,7 @@ import javax.swing.SwingConstants;
 import com.mysql.fabric.xmlrpc.base.Data;
 import com.mysql.jdbc.ResultSetMetaData;
 
+import dbConnection.GeneralQueries;
 import dbConnection.Student;
 import model.MoreOnClassLogic;
 
@@ -45,6 +46,7 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 	private JFrame win;
 	private Date dateObj;
 	private DateFormat fullDate;
+	private DateFormat dayName;
 	private JLabel lblSubsituteId;
 	private JTable table;
 	
@@ -74,6 +76,7 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 	public MoreOnClass(JFrame main, String class_id) throws FileNotFoundException, IOException, SQLException {
 		dateObj = new Date();
 		fullDate = new SimpleDateFormat("yyyy-MM-dd EEEE");
+		dayName = new SimpleDateFormat("EEEE");
 		
 		setType(Type.POPUP);
 		this.main = main;
@@ -163,7 +166,7 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 		getContentPane().add(chckbxNewCheckBox);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(22, 164, 809, 372);
+		panel_1.setBounds(22, 164, 809, 348);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -208,14 +211,14 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(12, 66, 785, 293);
+		scrollPane.setBounds(12, 66, 785, 272);
 		panel_1.add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
 		//Creating model as requirement
-		ResultSet rs = Student.getAll();
+		ResultSet rs = GeneralQueries.getStudentsByClassId(class_id);
 		DefaultTableModel model = new DefaultTableModel();
 		
 		ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
@@ -268,10 +271,30 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 	    lblDayName.setText(initialData[3]);
 	    lblStart.setText(initialData[4]);
 	    lblEnd.setText(initialData[5]);
+	    
+	    if (!dayName.format(dateObj).equals(initialData[3])){
+	    	panel_1.setEnabled(false);
+	    	chckbxNewCheckBox.setEnabled(false);
+	    	btnEnrollExistingStd.setEnabled(false);
+	    }
+	    if("1".equals(initialData[6])){
+	    	btnEnrollExistingStd.setEnabled(false);
+	    	btnSubsitute.setEnabled(false);
+	    }
 		
 		JLabel lblNewLabel_6 = new JLabel("Attendence and other student Info...");
 		lblNewLabel_6.setBounds(12, 48, 345, 16);
 		panel_1.add(lblNewLabel_6);
+		
+		JButton btnBackToMain = new JButton("Back To Main");
+		btnBackToMain.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				win.dispose();
+				main.setVisible(true);
+			}
+		});
+		btnBackToMain.setBounds(330, 511, 143, 25);
+		getContentPane().add(btnBackToMain);
 
 	}
 

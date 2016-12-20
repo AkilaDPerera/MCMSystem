@@ -14,7 +14,7 @@ public class MoreOnClassLogic {
 		String[] class_details = ClassEntity.getClassById(class_id); // subject, max_students, start_time, end_time, day
 		String[] teacher_details = GeneralQueries.getTeacherByClassId(class_id); // first_name, last_name, phone
 		String count = Takes.getStdCountByclassId(class_id);
-		return new String [] {class_details[0], teacher_details[0]+" "+teacher_details[1], count, class_details[4], class_details[2], class_details[3]};
+		return new String [] {class_details[0], teacher_details[0]+" "+teacher_details[1], count, class_details[4], class_details[2], class_details[3], class_details[1]};
 		
 	}
 
