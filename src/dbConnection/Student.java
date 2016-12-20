@@ -23,6 +23,7 @@ public class Student {
 		addEntry.setString(7, dob);
 		addEntry.setString(8, gender);
 		addEntry.setString(9, family_id);
+		LogWriter.writeQueryToLog(addEntry);
 		addEntry.executeUpdate();
 		
 		//Return the id
@@ -36,6 +37,7 @@ public class Student {
 		getID.setString(7, dob);
 		getID.setString(8, gender);
 		getID.setString(9, family_id);
+		LogWriter.writeQueryToLog(getID);
 		ResultSet rs = getID.executeQuery();
 		
 		if (rs.next()){
@@ -51,6 +53,7 @@ public class Student {
 		Connection conn = (Connection) ConnectDb.getConnection();
 		PreparedStatement getList = (PreparedStatement) conn.prepareStatement("SELECT id, first_name AS 'First Name', last_name AS 'Last Name', phone AS 'Phone', alt_phone AS 'Phone (Optional)', address AS 'Address', email AS 'Email', gender AS 'Gender'  FROM `mcms`.`student` WHERE id LIKE ?;");
 		getList.setString(1, temp);
+		LogWriter.writeQueryToLog(getList);
 		return getList.executeQuery();
 	}
 	
@@ -59,6 +62,7 @@ public class Student {
 		Connection conn = (Connection) ConnectDb.getConnection();
 		PreparedStatement getList = (PreparedStatement) conn.prepareStatement("SELECT id, first_name AS 'First Name', last_name AS 'Last Name', phone AS 'Phone', alt_phone AS 'Phone (Optional)', address AS 'Address', email AS 'Email', gender AS 'Gender'  FROM `mcms`.`student` WHERE first_name LIKE ?;");
 		getList.setString(1, temp);
+		LogWriter.writeQueryToLog(getList);
 		return getList.executeQuery();
 	}
 	
@@ -67,12 +71,14 @@ public class Student {
 		Connection conn = (Connection) ConnectDb.getConnection();
 		PreparedStatement getList = (PreparedStatement) conn.prepareStatement("SELECT id, first_name AS 'First Name', last_name AS 'Last Name', phone AS 'Phone', alt_phone AS 'Phone (Optional)', address AS 'Address', email AS 'Email', gender AS 'Gender'  FROM `mcms`.`student` WHERE last_name LIKE ?;");
 		getList.setString(1, temp);
+		LogWriter.writeQueryToLog(getList);
 		return getList.executeQuery();
 	}
 	
 	public static ResultSet getAll() throws FileNotFoundException, IOException, SQLException{
 		Connection conn = (Connection) ConnectDb.getConnection();
 		PreparedStatement getList = (PreparedStatement) conn.prepareStatement("SELECT id, first_name AS 'First Name', last_name AS 'Last Name', phone AS 'Phone', alt_phone AS 'Phone (Optional)', address AS 'Address', email AS 'Email', gender AS 'Gender'  FROM `mcms`.`student`");
+		LogWriter.writeQueryToLog(getList);
 		return getList.executeQuery();
 	}
 

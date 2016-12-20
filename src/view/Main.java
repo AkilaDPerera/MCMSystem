@@ -67,7 +67,7 @@ public class Main {
 		frmMusicClassManagement = new JFrame();
 		frmMusicClassManagement.setResizable(false);
 		frmMusicClassManagement.setTitle("Music Class Management System");
-		frmMusicClassManagement.setBounds(100, 100, 738, 439);
+		frmMusicClassManagement.setBounds(100, 100, 740, 497);
 		frmMusicClassManagement.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMusicClassManagement.getContentPane().setLayout(null);
 		
@@ -171,7 +171,7 @@ public class Main {
 		JPanel panelAdmin = new JPanel();
 		panelAdmin.setVisible(false);
 		panelAdmin.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelAdmin.setBounds(500, 168, 208, 211);
+		panelAdmin.setBounds(500, 168, 208, 252);
 		frmMusicClassManagement.getContentPane().add(panelAdmin);
 		panelAdmin.setLayout(null);
 		
@@ -212,6 +212,22 @@ public class Main {
 		JButton btnAddUser = new JButton("Add System User");
 		btnAddUser.setBounds(19, 161, 177, 25);
 		panelAdmin.add(btnAddUser);
+		
+		JButton btnNewButton = new JButton("View Log History");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					LogView frame = new LogView();
+					frame.setVisible(true);
+				} catch (Exception eee) {
+					eee.printStackTrace();
+				}
+				
+				
+			}
+		});
+		btnNewButton.setBounds(19, 214, 177, 25);
+		panelAdmin.add(btnNewButton);
 		
 		JPanel panelTeacher = new JPanel();
 		panelTeacher.setBounds(500, 168, 208, 211);
@@ -257,4 +273,18 @@ public class Main {
 		DateFormat fullDate = new SimpleDateFormat("yyyy-MM-dd EEEE");
 		lblCurrentClasses.setText(fullDate.format(dateobj));
 	}
+
+	public static String getRole() {
+		return role;
+	}
+
+	public static String getUsername() {
+		return username;
+	}
+	
+	public static String getUserid() {
+		return userid;
+	}
+
+
 }
