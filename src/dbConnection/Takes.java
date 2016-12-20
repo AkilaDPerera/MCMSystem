@@ -15,12 +15,13 @@ public class Takes {
 		PreparedStatement addEntry = (PreparedStatement) conn.prepareStatement("INSERT INTO `mcms`.`takes` (`class_id`, `student_id`, `enabled`) VALUES (?, ?, 1);");
 		addEntry.setString(1, class_id);
 		addEntry.setString(2, std_id);
+		LogWriter.writeQueryToLog(addEntry);
 		addEntry.executeUpdate();
 	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
+//	public static void main(String[] args) {
+//		// TODO Auto-generated method stub
+//
+//	}
 
 }

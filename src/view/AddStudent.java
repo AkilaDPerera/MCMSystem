@@ -310,7 +310,7 @@ public class AddStudent extends JFrame {
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(((JTextField) dateChooser_1.getDateEditor().getUiComponent()).getText());
+				//System.out.println(((JTextField) dateChooser_1.getDateEditor().getUiComponent()).getText());
 
 				ArrayList<Boolean> temp = new ArrayList<Boolean>();
 
