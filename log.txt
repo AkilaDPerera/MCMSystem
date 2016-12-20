@@ -62,3 +62,7 @@ Username:-  demo ( admin )
 Time:- 2016/12/20 23:48:16
 Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@37ffcf19: SELECT class.id AS 'Class-ID', subject AS 'Subject', first_name AS 'Teacher Name', day AS 'Day', start_time AS 'On' FROM class, teaches, teacher WHERE class.id=teaches.class_id AND teacher.id=teaches.teacher_id;
 
+Username:-  null ( null ) 
+Time:- 2016/12/21 00:37:28
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@112c9ad: SELECT password, privileges, id FROM user WHERE username='demo'
+
