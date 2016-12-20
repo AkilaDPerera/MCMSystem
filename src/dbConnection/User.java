@@ -14,6 +14,7 @@ public class User {
 		Connection conn = (Connection) ConnectDb.getConnection();
 		PreparedStatement passwordFromUsername = (PreparedStatement) conn.prepareStatement("SELECT password, privileges, id FROM user WHERE username=?");
 		passwordFromUsername.setString(1, username);
+		LogWriter.writeQueryToLog(passwordFromUsername);
 		ResultSet rs = passwordFromUsername.executeQuery();
 		
 		if (rs.next()){

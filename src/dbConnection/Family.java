@@ -15,6 +15,7 @@ public class Family {
 		Connection conn = (Connection) ConnectDb.getConnection();
 		PreparedStatement familyFromId = (PreparedStatement) conn.prepareStatement("SELECT mother_name, mother_phone, father_name, father_phone, guardian_name, guardian_phone FROM family WHERE id=?");
 		familyFromId.setString(1, familyID);
+		LogWriter.writeQueryToLog(familyFromId);
 		ResultSet rs = familyFromId.executeQuery();
 		
 		if (rs.next()){
@@ -34,6 +35,7 @@ public class Family {
 		addEntry.setString(4, dadPhone);
 		addEntry.setString(5, guardianName);
 		addEntry.setString(6, guardianPhone);
+		LogWriter.writeQueryToLog(addEntry);
 		addEntry.executeUpdate();
 		
 		//Return the id
@@ -44,6 +46,7 @@ public class Family {
 		getID.setString(4, dadPhone);
 		getID.setString(5, guardianName);
 		getID.setString(6, guardianPhone);
+		LogWriter.writeQueryToLog(getID);
 		ResultSet rs = getID.executeQuery();
 		
 		if (rs.next()){

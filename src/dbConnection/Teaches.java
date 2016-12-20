@@ -16,6 +16,7 @@ public class Teaches {
 		addEntry.setString(1, class_id);
 		addEntry.setString(2, teacher_id);
 		addEntry.setString(3, hourly_salary);
+		LogWriter.writeQueryToLog(addEntry);
 		addEntry.executeUpdate();
 	}
 //	public static void main(String[] args) throws FileNotFoundException, IOException, SQLException {

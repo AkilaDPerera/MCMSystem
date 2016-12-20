@@ -16,8 +16,16 @@ public class Takes {
 		PreparedStatement addEntry = (PreparedStatement) conn.prepareStatement("INSERT INTO `mcms`.`takes` (`class_id`, `student_id`, `enabled`) VALUES (?, ?, 1);");
 		addEntry.setString(1, class_id);
 		addEntry.setString(2, std_id);
+		LogWriter.writeQueryToLog(addEntry);
 		addEntry.executeUpdate();
 	}
+<<<<<<< HEAD
+
+//	public static void main(String[] args) {
+//		// TODO Auto-generated method stub
+//
+//	}
+=======
 	
 	public static String getStdCountByclassId(String id) throws FileNotFoundException, IOException, SQLException{
 		Connection conn = (Connection) ConnectDb.getConnection();
@@ -32,6 +40,7 @@ public class Takes {
 			return null;
 		}
 	}
+>>>>>>> master
 
 //	public static void main(String[] args) throws FileNotFoundException, IOException, SQLException {
 //		// TODO Auto-generated method stub

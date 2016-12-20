@@ -24,6 +24,7 @@ public class ClassEntity {
 		addEntry.setString(8, location);
 		addEntry.setString(9, day);
 		addEntry.executeUpdate();
+		LogWriter.writeQueryToLog(addEntry);
 		
 		//Return the id
 		PreparedStatement getID = (PreparedStatement) conn.prepareStatement("SELECT id FROM `mcms`.`class` WHERE `subject`=? AND `class_type`=? AND `monthly_fee`=? AND `commence_date`=? AND `start_time`=? AND `end_time`=? AND `max_students`=? AND `location`=? AND `day`=?;");
@@ -36,6 +37,7 @@ public class ClassEntity {
 		getID.setString(7, max_students);
 		getID.setString(8, location);
 		getID.setString(9, day);
+		LogWriter.writeQueryToLog(getID);
 		ResultSet rs = getID.executeQuery();
 		
 		if (rs.next()){
@@ -50,6 +52,7 @@ public class ClassEntity {
 		Connection conn = (Connection) ConnectDb.getConnection();
 		PreparedStatement getList = (PreparedStatement) conn.prepareStatement("SELECT id AS ID, subject AS 'Subject', class_type AS 'Class Type', monthly_fee AS 'Monthly Fee', day AS 'Day', location AS 'Location', max_students AS 'MAX', commence_date AS 'Starting Date', start_time AS 'Start'  FROM `mcms`.`class` WHERE id LIKE ?;");
 		getList.setString(1, temp);
+		LogWriter.writeQueryToLog(getList);
 		return getList.executeQuery();
 	}
 	
@@ -58,6 +61,7 @@ public class ClassEntity {
 		Connection conn = (Connection) ConnectDb.getConnection();
 		PreparedStatement getList = (PreparedStatement) conn.prepareStatement("SELECT id AS ID, subject AS 'Subject', class_type AS 'Class Type', monthly_fee AS 'Monthly Fee', day AS 'Day', location AS 'Location', max_students AS 'MAX', commence_date AS 'Starting Date', start_time AS 'Start'  FROM `mcms`.`class` WHERE subject LIKE ?;");
 		getList.setString(1, temp);
+		LogWriter.writeQueryToLog(getList);
 		return getList.executeQuery();
 	}
 	
@@ -66,6 +70,7 @@ public class ClassEntity {
 		Connection conn = (Connection) ConnectDb.getConnection();
 		PreparedStatement getList = (PreparedStatement) conn.prepareStatement("SELECT id AS ID, subject AS 'Subject', class_type AS 'Class Type', monthly_fee AS 'Monthly Fee', day AS 'Day', location AS 'Location', max_students AS 'MAX', commence_date AS 'Starting Date', start_time AS 'Start'  FROM `mcms`.`class` WHERE location LIKE ?;");
 		getList.setString(1, temp);
+		LogWriter.writeQueryToLog(getList);
 		return getList.executeQuery();
 	}
 	
@@ -74,12 +79,14 @@ public class ClassEntity {
 		Connection conn = (Connection) ConnectDb.getConnection();
 		PreparedStatement getList = (PreparedStatement) conn.prepareStatement("SELECT id AS ID, subject AS 'Subject', class_type AS 'Class Type', monthly_fee AS 'Monthly Fee', day AS 'Day', location AS 'Location', max_students AS 'MAX', commence_date AS 'Starting Date', start_time AS 'Start'  FROM `mcms`.`class` WHERE day LIKE ?;");
 		getList.setString(1, temp);
+		LogWriter.writeQueryToLog(getList);
 		return getList.executeQuery();
 	}
 	
 	public static ResultSet getAll() throws FileNotFoundException, IOException, SQLException{
 		Connection conn = (Connection) ConnectDb.getConnection();
 		PreparedStatement getList = (PreparedStatement) conn.prepareStatement("SELECT id AS ID, subject AS 'Subject', class_type AS 'Class Type', monthly_fee AS 'Monthly Fee', day AS 'Day', location AS 'Location', max_students AS 'MAX', commence_date AS 'Starting Date', start_time AS 'Start'  FROM `mcms`.`class`");
+		LogWriter.writeQueryToLog(getList);
 		return getList.executeQuery();
 	}
 	
