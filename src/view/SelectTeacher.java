@@ -33,7 +33,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Window.Type;
 
 public class SelectTeacher extends JFrame {
-	private InitializeClass submain;
+	private SelectableTeacher submain;
 	private JFrame win;
 	
 	private JTable table;
@@ -64,7 +64,7 @@ public class SelectTeacher extends JFrame {
 	 */
 	public SelectTeacher(JFrame submain) throws FileNotFoundException, IOException, SQLException {
 		setType(Type.POPUP);
-		this.submain = (InitializeClass) submain;
+		this.submain = (SelectableTeacher) submain;
 		this.win = this;
 		
 		setTitle("Select Teacher");
@@ -92,7 +92,7 @@ public class SelectTeacher extends JFrame {
 				if (index>=0){
 					String id = table.getValueAt(index, 0).toString();
 					String name = (String) table.getValueAt(index, 1);
-					((InitializeClass) submain).setNameId(id, name);
+					((SelectableTeacher) submain).setNameId(id, name);
 					submain.setVisible(true);
 					win.dispose();
 				}else{

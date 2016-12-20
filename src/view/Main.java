@@ -5,12 +5,16 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -89,6 +93,30 @@ public class Main {
 		frmMusicClassManagement.getContentPane().add(lblCurrentClasses);
 		
 		JButton btnMore = new JButton("More");
+		btnMore.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				int index = table.getSelectedRow();
+				if (index>=0){
+					String class_id = table.getValueAt(index, 0).toString();
+					
+					MoreOnClass window;
+					try {
+						window = new MoreOnClass(frmMusicClassManagement, class_id);
+						window.setVisible(true);
+						frmMusicClassManagement.setVisible(false);
+					} catch (IOException | SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}else{
+					JOptionPane.showMessageDialog(null, "Select a class to proceed.", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				
+				
+			}
+		});
 		btnMore.setBounds(388, 354, 97, 25);
 		frmMusicClassManagement.getContentPane().add(btnMore);
 		
@@ -224,6 +252,9 @@ public class Main {
 				frmMusicClassManagement.dispose();
 			}
 		});
-
+		
+		Date dateobj = new Date();
+		DateFormat fullDate = new SimpleDateFormat("yyyy-MM-dd EEEE");
+		lblCurrentClasses.setText(fullDate.format(dateobj));
 	}
 }

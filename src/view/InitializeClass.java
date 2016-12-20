@@ -29,7 +29,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 import com.toedter.calendar.JDateChooser;
 
-public class InitializeClass extends JFrame {
+public class InitializeClass extends JFrame implements SelectableTeacher {
 
 	private JFrame main;
 	private JFrame win;
