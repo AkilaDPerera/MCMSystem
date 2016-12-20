@@ -10,6 +10,15 @@ public class GeneralValidations {
 			return false;
 		}
 	}
+
+	public static boolean dobValidation(String dob){
+		if (dob!=null){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
 	
 	public static boolean optionalNameValidation(String name){
 		name = name.trim();
