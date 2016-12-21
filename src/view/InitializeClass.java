@@ -74,6 +74,7 @@ public class InitializeClass extends JFrame implements SelectableTeacher, Select
 	 * Create the frame.
 	 */
 	public InitializeClass(JFrame main) {
+		setResizable(false);
 		setType(Type.POPUP);
 		this.main = main;
 		this.win = this;
@@ -153,7 +154,6 @@ public class InitializeClass extends JFrame implements SelectableTeacher, Select
 		contentPane.add(lblMonthlyFee);
 		
 		textFieldMonthlyfee = new JTextField();
-		textFieldMonthlyfee.setText("750.00");
 		textFieldMonthlyfee.setAlignmentX(Component.LEFT_ALIGNMENT);
 		textFieldMonthlyfee.setBounds(152, 433, 68, 22);
 		contentPane.add(textFieldMonthlyfee);
@@ -174,7 +174,6 @@ public class InitializeClass extends JFrame implements SelectableTeacher, Select
 		panel_induvidual.add(lblLocation_1);
 		
 		txtLine = new JTextField();
-		txtLine.setText("line 1");
 		txtLine.setBounds(80, 83, 154, 22);
 		panel_induvidual.add(txtLine);
 		txtLine.setColumns(10);
@@ -223,13 +222,11 @@ public class InitializeClass extends JFrame implements SelectableTeacher, Select
 		textFieldCount = new JTextField();
 		textFieldCount.setBounds(91, 42, 35, 22);
 		panel_group.add(textFieldCount);
-		textFieldCount.setText("999");
 		textFieldCount.setColumns(10);
 		
 		txtLocation = new JTextField();
 		txtLocation.setBounds(92, 71, 124, 22);
 		panel_group.add(txtLocation);
-		txtLocation.setText("Old gym");
 		txtLocation.setColumns(10);
 		
 		JButton btnSubmit = new JButton("Submit");

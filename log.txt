@@ -310,3 +310,187 @@ Username:-  null ( null )
 Time:- 2016/12/21 08:10:58
 Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@207174: SELECT password, privileges, id FROM user WHERE username='demo'
 
+Username:-  null ( null ) 
+Time:- 2016/12/21 09:21:17
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@aadb68: SELECT password, privileges, id FROM user WHERE username='demo'
+
+Username:-  null ( null ) 
+Time:- 2016/12/21 09:31:27
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@18831a7: SELECT password, privileges, id FROM user WHERE username='demo'
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:31:39
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@1887cc0: SELECT id AS ID, subject AS 'Subject', class_type AS 'Class Type', monthly_fee AS 'Monthly Fee', day AS 'Day', location AS 'Location', max_students AS 'MAX', commence_date AS 'Starting Date', start_time AS 'Start'  FROM `mcms`.`class`
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:31:42
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@6f4e9: SELECT id AS ID, subject AS 'Subject', class_type AS 'Class Type', monthly_fee AS 'Monthly Fee', day AS 'Day', location AS 'Location', max_students AS 'MAX', commence_date AS 'Starting Date', start_time AS 'Start'  FROM `mcms`.`class`
+
+Username:-  null ( null ) 
+Time:- 2016/12/21 09:40:40
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@aadb68: SELECT password, privileges, id FROM user WHERE username='demo'
+
+Username:-  null ( null ) 
+Time:- 2016/12/21 09:41:39
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@c70e6e: SELECT password, privileges, id FROM user WHERE username='demo'
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:42:31
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@87617b: INSERT INTO `mcms`.`teacher`(`first_name`, `last_name`, `phone`, `alt_phone`, `address`, `email`, `user_id`) VALUES ('Suram', 'Siri Kumara', '0715645789', '', '99/5, Pepliyana, Nugegoda.', 'Siri@gmail.com', '0');
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:42:31
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@16e109c: SELECT id FROM `mcms`.`teacher` WHERE `first_name`='Suram' AND `last_name`='Siri Kumara' AND `phone`='0715645789' AND `alt_phone`='' AND `address`='99/5, Pepliyana, Nugegoda.' AND `email`='Siri@gmail.com' AND `user_id`='0';
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:42:38
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@379e36: SELECT id, first_name AS 'First Name', last_name AS 'Last Name', phone AS 'Phone', alt_phone AS 'Phone (Optional)', address AS 'Address', email AS 'Email'  FROM `mcms`.`teacher`
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:42:48
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@f604ff: SELECT id, first_name AS 'First Name', last_name AS 'Last Name', phone AS 'Phone', alt_phone AS 'Phone (Optional)', address AS 'Address', email AS 'Email', gender AS 'Gender'  FROM `mcms`.`student`
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:44:27
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@1aeb378: SELECT id, first_name AS 'First Name', last_name AS 'Last Name', phone AS 'Phone', alt_phone AS 'Phone (Optional)', address AS 'Address', email AS 'Email'  FROM `mcms`.`teacher`
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:44:45
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@72f578: SELECT id, first_name AS 'First Name', last_name AS 'Last Name', phone AS 'Phone', alt_phone AS 'Phone (Optional)', address AS 'Address', email AS 'Email'  FROM `mcms`.`teacher`
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:46:04
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@f7f176: INSERT INTO `mcms`.`class` (`subject`, `class_type`, `monthly_fee`, `commence_date`, `start_time`, `end_time`, `max_students`, `location`, `day`) VALUES ('Piano', 'group', '700.00', '2016-12-18', '15:30', '17:30', '23', 'CC Room', 'Monday');
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:46:04
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@8b55d0: SELECT id FROM `mcms`.`class` WHERE `subject`='Piano' AND `class_type`='group' AND `monthly_fee`='700.00' AND `commence_date`='2016-12-18' AND `start_time`='15:30' AND `end_time`='17:30' AND `max_students`='23' AND `location`='CC Room' AND `day`='Monday';
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:46:04
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@d9ede6: INSERT INTO `mcms`.`teaches` (`class_id`, `teacher_id`, `hourly_salary`) VALUES ('1', '1', '200');
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:46:27
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@324379: SELECT id AS ID, subject AS 'Subject', class_type AS 'Class Type', monthly_fee AS 'Monthly Fee', day AS 'Day', location AS 'Location', max_students AS 'MAX', commence_date AS 'Starting Date', start_time AS 'Start'  FROM `mcms`.`class`
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:48:21
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@1a4cfbd: INSERT INTO `mcms`.`family`(`mother_name`, `mother_phone`, `father_name`, `father_phone`, `guardian_name`, `guardian_phone`) VALUES ('Swarna', '0723338232', 'Padmasiri', '0718688549', '', '');
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:48:21
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@1be1bc6: SELECT id FROM `mcms`.`family` WHERE `mother_name`='Swarna' AND `mother_phone`='0723338232' AND `father_name`='Padmasiri' AND `father_phone`='0718688549' AND `guardian_name`='' AND `guardian_phone`='';
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:48:21
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@1768ce2: INSERT INTO `mcms`.`student`(`first_name`, `last_name`, `phone`, `alt_phone`, `address`, `email`, `dob`, `gender`, `family_id`) VALUES ('Akila', 'D Perera', '0716360198', '', '955, Darshana, Ekneligoda, Kuruwita.', 'akila@gmail.com', '1994-04-08', 'Male', '1');
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:48:21
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@99781d: SELECT id FROM `mcms`.`student` WHERE `first_name`='Akila' AND `last_name`='D Perera' AND `phone`='0716360198' AND `alt_phone`='' AND `address`='955, Darshana, Ekneligoda, Kuruwita.' AND `email`='akila@gmail.com' AND `dob`='1994-04-08' AND `gender`='Male' AND `family_id`='1';
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:48:26
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@797b1c: INSERT INTO `mcms`.`takes` (`class_id`, `student_id`, `enabled`) VALUES ('1', '1', 1);
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:48:37
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@57a9d7: SELECT id AS ID, subject AS 'Subject', class_type AS 'Class Type', monthly_fee AS 'Monthly Fee', day AS 'Day', location AS 'Location', max_students AS 'MAX', commence_date AS 'Starting Date', start_time AS 'Start'  FROM `mcms`.`class`
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:49:42
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@c3c224: INSERT INTO `mcms`.`family`(`mother_name`, `mother_phone`, `father_name`, `father_phone`, `guardian_name`, `guardian_phone`) VALUES ('Dhammika', '0714565789', 'Kamal', '0717898789', '', '');
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:49:43
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@1452ae7: SELECT id FROM `mcms`.`family` WHERE `mother_name`='Dhammika' AND `mother_phone`='0714565789' AND `father_name`='Kamal' AND `father_phone`='0717898789' AND `guardian_name`='' AND `guardian_phone`='';
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:49:43
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@38b419: INSERT INTO `mcms`.`student`(`first_name`, `last_name`, `phone`, `alt_phone`, `address`, `email`, `dob`, `gender`, `family_id`) VALUES ('Tharaka', 'Kamal', '0714578987', '', 'Gamage rd, Gampaha.', 'tharaka@gmail.com', '1994-12-15', 'Male', '2');
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:49:43
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@1900abf: SELECT id FROM `mcms`.`student` WHERE `first_name`='Tharaka' AND `last_name`='Kamal' AND `phone`='0714578987' AND `alt_phone`='' AND `address`='Gamage rd, Gampaha.' AND `email`='tharaka@gmail.com' AND `dob`='1994-12-15' AND `gender`='Male' AND `family_id`='2';
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:49:44
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@491d9b: INSERT INTO `mcms`.`takes` (`class_id`, `student_id`, `enabled`) VALUES ('1', '2', 1);
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:50:01
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@1df5a65: SELECT id, first_name AS 'First Name', last_name AS 'Last Name', phone AS 'Phone', alt_phone AS 'Phone (Optional)', address AS 'Address', email AS 'Email'  FROM `mcms`.`teacher`
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:51:04
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@1783dd7: INSERT INTO `mcms`.`teacher`(`first_name`, `last_name`, `phone`, `alt_phone`, `address`, `email`, `user_id`) VALUES ('Dilum', 'Sirimanna', '0714565789', '', '335/B/2, Galle rd, Panadura.', 'dilum@gmail.com', '0');
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:51:04
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@1257334: SELECT id FROM `mcms`.`teacher` WHERE `first_name`='Dilum' AND `last_name`='Sirimanna' AND `phone`='0714565789' AND `alt_phone`='' AND `address`='335/B/2, Galle rd, Panadura.' AND `email`='dilum@gmail.com' AND `user_id`='0';
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:51:10
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@6bea2f: SELECT id, first_name AS 'First Name', last_name AS 'Last Name', phone AS 'Phone', alt_phone AS 'Phone (Optional)', address AS 'Address', email AS 'Email'  FROM `mcms`.`teacher`
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:51:58
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@1cb642c: INSERT INTO `mcms`.`class` (`subject`, `class_type`, `monthly_fee`, `commence_date`, `start_time`, `end_time`, `max_students`, `location`, `day`) VALUES ('Organ', 'group', '700', '2016-12-05', '15:15', '17:15', '12', 'CG hall', 'Wednesday');
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:51:58
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@1c1e1da: SELECT id FROM `mcms`.`class` WHERE `subject`='Organ' AND `class_type`='group' AND `monthly_fee`='700' AND `commence_date`='2016-12-05' AND `start_time`='15:15' AND `end_time`='17:15' AND `max_students`='12' AND `location`='CG hall' AND `day`='Wednesday';
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:51:58
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@6d6010: INSERT INTO `mcms`.`teaches` (`class_id`, `teacher_id`, `hourly_salary`) VALUES ('2', '2', '250');
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:52:15
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@16a2576: SELECT id AS ID, subject AS 'Subject', class_type AS 'Class Type', monthly_fee AS 'Monthly Fee', day AS 'Day', location AS 'Location', max_students AS 'MAX', commence_date AS 'Starting Date', start_time AS 'Start'  FROM `mcms`.`class`
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:52:18
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@62c251: SELECT id, first_name AS 'First Name', last_name AS 'Last Name', phone AS 'Phone', alt_phone AS 'Phone (Optional)', address AS 'Address', email AS 'Email', gender AS 'Gender'  FROM `mcms`.`student`
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:52:21
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@e1ea3b: INSERT INTO `mcms`.`takes` (`class_id`, `student_id`, `enabled`) VALUES ('2', '1', 1);
+
+Username:-  null ( null ) 
+Time:- 2016/12/21 09:53:19
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@aadb68: SELECT password, privileges, id FROM user WHERE username='demo'
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:53:28
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@1d49257: SELECT id AS ID, subject AS 'Subject', class_type AS 'Class Type', monthly_fee AS 'Monthly Fee', day AS 'Day', location AS 'Location', max_students AS 'MAX', commence_date AS 'Starting Date', start_time AS 'Start'  FROM `mcms`.`class`
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:53:31
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@149db8b: SELECT id, first_name AS 'First Name', last_name AS 'Last Name', phone AS 'Phone', alt_phone AS 'Phone (Optional)', address AS 'Address', email AS 'Email', gender AS 'Gender'  FROM `mcms`.`student`
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:53:40
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@c8ccf8: INSERT INTO `mcms`.`takes` (`class_id`, `student_id`, `enabled`) VALUES ('2', '2', 1);
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:54:51
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@1c0db1f: SELECT id, first_name AS 'First Name', last_name AS 'Last Name', phone AS 'Phone', alt_phone AS 'Phone (Optional)', address AS 'Address', email AS 'Email'  FROM `mcms`.`teacher`
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:54:57
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@1a5ee0d: SELECT id, first_name AS 'First Name', last_name AS 'Last Name', phone AS 'Phone', alt_phone AS 'Phone (Optional)', address AS 'Address', email AS 'Email'  FROM `mcms`.`teacher`
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:56:46
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@1d3527f: SELECT id, first_name AS 'First Name', last_name AS 'Last Name', phone AS 'Phone', alt_phone AS 'Phone (Optional)', address AS 'Address', email AS 'Email'  FROM `mcms`.`teacher`
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:57:08
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@153e34a: SELECT id, first_name AS 'First Name', last_name AS 'Last Name', phone AS 'Phone', alt_phone AS 'Phone (Optional)', address AS 'Address', email AS 'Email'  FROM `mcms`.`teacher`
+
+Username:-  demo ( admin ) 
+Time:- 2016/12/21 09:57:37
+Executed query:- com.mysql.jdbc.JDBC42PreparedStatement@131ff2a: SELECT password, privileges, id FROM user WHERE username='demot'
+

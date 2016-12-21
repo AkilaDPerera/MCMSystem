@@ -43,6 +43,7 @@ public class LogView extends JFrame {
 //	 * Create the frame.
 //	 */
 	public LogView() {
+		setResizable(false);
 		setType(Type.POPUP);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 907, 530);

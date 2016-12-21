@@ -63,6 +63,7 @@ public class SelectTeacher extends JFrame {
 	 * @throws FileNotFoundException 
 	 */
 	public SelectTeacher(JFrame submain) throws FileNotFoundException, IOException, SQLException {
+		setResizable(false);
 		setType(Type.POPUP);
 		this.submain = (SelectableTeacher) submain;
 		this.win = this;
@@ -101,7 +102,7 @@ public class SelectTeacher extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setBounds(12, 416, 838, 25);
+		btnNewButton.setBounds(607, 426, 187, 25);
 		getContentPane().add(btnNewButton);
 		
 		textField = new JTextField();
@@ -177,6 +178,16 @@ public class SelectTeacher extends JFrame {
 		});
 		btnAll.setBounds(26, 87, 62, 25);
 		getContentPane().add(btnAll);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				submain.setVisible(true);
+				win.dispose();
+			}
+		});
+		btnBack.setBounds(108, 427, 174, 23);
+		getContentPane().add(btnBack);
 		
 
 	}

@@ -168,6 +168,24 @@ public class Main {
 		lblTitle.setBounds(23, 13, 462, 50);
 		frmMusicClassManagement.getContentPane().add(lblTitle);
 		
+		JPanel panelTeacher = new JPanel();
+		panelTeacher.setBounds(500, 168, 208, 211);
+		frmMusicClassManagement.getContentPane().add(panelTeacher);
+		panelTeacher.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelTeacher.setLayout(null);
+		
+		JButton btnRefresh = new JButton("Refresh");
+		btnRefresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					table.setModel(DbUtils.resultSetToTableModel(GeneralQueries.getMainList()));
+				} catch (IOException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		
 		JPanel panelAdmin = new JPanel();
 		panelAdmin.setVisible(false);
 		panelAdmin.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -235,28 +253,6 @@ public class Main {
 		});
 		btnNewButton.setBounds(19, 214, 177, 25);
 		panelAdmin.add(btnNewButton);
-		
-		JPanel panelTeacher = new JPanel();
-		panelTeacher.setBounds(500, 168, 208, 211);
-		frmMusicClassManagement.getContentPane().add(panelTeacher);
-		panelTeacher.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelTeacher.setLayout(null);
-		
-		JButton btnSalary = new JButton("Salary Details");
-		btnSalary.setBounds(12, 92, 184, 25);
-		panelTeacher.add(btnSalary);
-		
-		JButton btnRefresh = new JButton("Refresh");
-		btnRefresh.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					table.setModel(DbUtils.resultSetToTableModel(GeneralQueries.getMainList()));
-				} catch (IOException | SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
 		btnRefresh.setBounds(279, 354, 97, 25);
 		frmMusicClassManagement.getContentPane().add(btnRefresh);
 		panelTeacher.setVisible(false);

@@ -86,6 +86,7 @@ public class AddStudent extends JFrame implements SelectableClass {
 	 * Create the frame.
 	 */
 	public AddStudent(JFrame main) {
+		setResizable(false);
 		setType(Type.POPUP); // (JFrame main)
 		this.main = main;
 		win = this;
@@ -121,7 +122,7 @@ public class AddStudent extends JFrame implements SelectableClass {
 		getContentPane().add(textFieldAddress);
 		textFieldAddress.setColumns(10);
 
-		JLabel lblAddressLine = new JLabel("Address line 1*");
+		JLabel lblAddressLine = new JLabel("Address*");
 		lblAddressLine.setBounds(12, 188, 112, 16);
 		getContentPane().add(lblAddressLine);
 

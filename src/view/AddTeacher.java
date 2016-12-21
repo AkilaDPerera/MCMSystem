@@ -55,6 +55,7 @@ public class AddTeacher extends JFrame {
 	 * Create the frame.
 	 */
 	public AddTeacher(JFrame main) {
+		setResizable(false);
 		setType(Type.POPUP);
 		this.main = main;
 		this.win = this;
@@ -85,7 +86,7 @@ public class AddTeacher extends JFrame {
 		lblFirstName.setBounds(12, 60, 70, 16);
 		getContentPane().add(lblFirstName);
 		
-		JLabel lblAddress = new JLabel("Address line 1*");
+		JLabel lblAddress = new JLabel("Address*");
 		lblAddress.setBounds(12, 156, 116, 16);
 		getContentPane().add(lblAddress);
 		
