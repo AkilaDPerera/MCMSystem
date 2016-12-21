@@ -132,6 +132,14 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 		panel.add(lblNewLabel_5);
 		
 		JButton btnEnrollExistingStd = new JButton("Enroll existing std");
+		btnEnrollExistingStd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				StudentEnrollment window;
+				window = new StudentEnrollment(win);
+				window.setVisible(true);
+				win.setVisible(false);
+			}
+		});
 		btnEnrollExistingStd.setBounds(658, 27, 149, 59);
 		panel.add(btnEnrollExistingStd);
 		
@@ -431,7 +439,7 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 
 
 	@Override
-	public void setNameId(String id, String name, String email) {
+	public void setTeacherNameId(String id, String name, String email) {
 		lblSubsituteId.setText(id);
 		try {
 			Session.editSession(session_id, lblSubsituteId.getText(), "0");

@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Window.Type;
 
 public class SelectStudent extends JFrame {
-	private InitializeClass submain;
+	private SelectableStudent submain;
 	private JFrame win;
 	
 	private JTextField textField;
@@ -57,7 +57,7 @@ public class SelectStudent extends JFrame {
 	 */
 	public SelectStudent(JFrame submain) throws FileNotFoundException, IOException, SQLException {
 		setType(Type.POPUP);
-		this.submain = (InitializeClass) submain;
+		this.submain = (SelectableStudent) submain;
 		this.win = this;
 		
 		setTitle("Select Student");
@@ -116,8 +116,8 @@ public class SelectStudent extends JFrame {
 					String id = table.getValueAt(index, 0).toString();
 					String name = (String) table.getValueAt(index, 1);
 					String address = (String) table.getValueAt(index, 5);
-					((InitializeClass) submain).setStdNameId(id, name);
-					((InitializeClass) submain).setAddress(address);
+					String email = (String) table.getValueAt(index, 6);
+					((SelectableStudent) submain).setStdNameId(id, name, email, address);
 					submain.setVisible(true);
 					win.dispose();
 				}else{

@@ -176,7 +176,11 @@ public class Signup extends JFrame implements SelectableTeacher {
 							if (comboBox.getSelectedIndex()==0){
 								User.setUser("admin", textField.getText().trim(), password1, textField_1.getText().trim(), "0");
 							}else{
-								User.setUser("teacher", textField.getText().trim(), password1, textField_1.getText().trim(), lblId.getText());
+								if (User.isTeacherThere(lblId.getText())){
+									User.updateUser("teacher", textField.getText().trim(), password1, textField_1.getText().trim(), lblId.getText());
+								}else{
+									User.setUser("teacher", textField.getText().trim(), password1, textField_1.getText().trim(), lblId.getText());
+								}
 							}
 							JOptionPane.showMessageDialog(null, "Successful!", "Info", JOptionPane.INFORMATION_MESSAGE);
 							win.dispose();
@@ -195,8 +199,7 @@ public class Signup extends JFrame implements SelectableTeacher {
 	}
 
 	@Override
-	public void setNameId(String id, String name, String email) {
-		// TODO Auto-generated method stub
+	public void setTeacherNameId(String id, String name, String email) {
 		lblId.setText(id);
 		textField_1.setText(email);
 		
