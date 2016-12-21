@@ -107,6 +107,8 @@ public class StudentEnrollment extends JFrame implements SelectableStudent, Sele
 					try {
 						Takes.addEnrolment(lblclssId.getText(), lblstdId.getText());
 						JOptionPane.showMessageDialog(null, "Class enrolment successful!", "Successful",JOptionPane.INFORMATION_MESSAGE);
+						win.dispose();
+						submain.setVisible(true);
 					} catch (IOException | SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

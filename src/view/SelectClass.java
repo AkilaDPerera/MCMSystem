@@ -55,6 +55,7 @@ public class SelectClass extends JFrame {
 	 * @throws FileNotFoundException 
 	 */
 	public SelectClass(JFrame submain) throws FileNotFoundException, IOException, SQLException {
+		setResizable(false);
 		setType(Type.POPUP);
 		this.submain = (SelectableClass) submain;
 		this.win = this;
@@ -117,7 +118,7 @@ public class SelectClass extends JFrame {
 				}
 			}
 		});
-		button.setBounds(12, 437, 838, 25);
+		button.setBounds(670, 434, 140, 25);
 		getContentPane().add(button);
 		
 		JButton button_1 = new JButton("All");
@@ -147,6 +148,16 @@ public class SelectClass extends JFrame {
 		bg.add(rdbtnLocation);
 		bg.add(rdbtnSubject);
 		bg.add(rdbtnID);
+		
+		JButton btnBa = new JButton("Back");
+		btnBa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				submain.setVisible(true);
+				win.dispose();
+			}
+		});
+		btnBa.setBounds(366, 434, 133, 23);
+		getContentPane().add(btnBa);
 		
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -88,6 +88,7 @@ public class MoreOnClass extends JFrame implements SelectableTeacher{
 	 * Create the frame.
 	 */
 	public MoreOnClass(JFrame main, String class_id) throws FileNotFoundException, IOException, SQLException {
+		setResizable(false);
 		dateObj = new Date();
 		fullDate = new SimpleDateFormat("yyyy-MM-dd EEEE");
 		dayName = new SimpleDateFormat("EEEE");
