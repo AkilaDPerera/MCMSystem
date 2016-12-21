@@ -30,7 +30,7 @@ import javax.swing.JTextPane;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Window.Type;
 
-public class InitializeClass extends JFrame implements SelectableTeacher {
+public class InitializeClass extends JFrame implements SelectableTeacher, SelectableStudent {
 
 	private JFrame main;
 	private JFrame win;
@@ -74,7 +74,7 @@ public class InitializeClass extends JFrame implements SelectableTeacher {
 	 * Create the frame.
 	 */
 	public InitializeClass(JFrame main) {
-		setType(Type.POPUP);//
+		setType(Type.POPUP);
 		this.main = main;
 		this.win = this;
 		setTitle("Initialize Class");
@@ -451,18 +451,20 @@ public class InitializeClass extends JFrame implements SelectableTeacher {
 			}
 		);
 	}
-	
-	public void setStdNameId(String id, String name){
-		lblStdId.setText(id);
-		lblStdName.setText(name);
-	}
-	public void setAddress(String address){
+
+
+	@Override
+	public void setStdNameId(String student_id, String student_name, String email, String address) {
+		lblName.setText(student_name);
+		lblID.setText(student_id);	
 		txtLine.setText(address);
+		
 	}
 
 	@Override
-	public void setNameId(String id, String name, String email) {
+	public void setTeacherNameId(String id, String name, String email) {
+		lblID.setText(id);
 		lblName.setText(name);
-		lblID.setText(id);	
+		
 	}
 }

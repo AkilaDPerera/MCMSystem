@@ -42,7 +42,7 @@ import javax.swing.JFormattedTextField.AbstractFormatter;
 import javax.swing.SwingConstants;
 import java.awt.Window.Type;
 
-public class AddStudent extends JFrame {
+public class AddStudent extends JFrame implements SelectableClass {
 	private JFrame main;
 	private JFrame win;
 	private JTextField textFieldFirstName;
@@ -515,7 +515,9 @@ public class AddStudent extends JFrame {
 
 	}
 
-	public void setId(String id) {
-		lblClass.setText(id);
+	@Override
+	public void setClassDetails(String class_id, String subject, String teacher_name) {
+		lblClass.setText(class_id);
+		
 	}
 }

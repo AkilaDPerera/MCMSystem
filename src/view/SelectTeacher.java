@@ -93,7 +93,7 @@ public class SelectTeacher extends JFrame {
 					String id = table.getValueAt(index, 0).toString();
 					String name = (String) table.getValueAt(index, 1);
 					String email = (String) table.getValueAt(index, 6);
-					((SelectableTeacher) submain).setNameId(id, name, email);
+					((SelectableTeacher) submain).setTeacherNameId(id, name, email);
 					submain.setVisible(true);
 					win.dispose();
 				}else{

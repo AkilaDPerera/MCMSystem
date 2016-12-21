@@ -24,11 +24,13 @@ import java.awt.event.ActionEvent;
 import java.awt.Window.Type;
 
 public class SelectClass extends JFrame {
-	private AddStudent submain;
+	private SelectableClass submain;
 	private JFrame win;
+	
 	private JTextField textField;
 	private JTable table;
 	private ButtonGroup bg = new ButtonGroup();
+
 
 	/**
 	 * Launch the application.
@@ -54,7 +56,7 @@ public class SelectClass extends JFrame {
 	 */
 	public SelectClass(JFrame submain) throws FileNotFoundException, IOException, SQLException {
 		setType(Type.POPUP);
-		this.submain = (AddStudent) submain;
+		this.submain = (SelectableClass) submain;
 		this.win = this;
 		
 		setTitle("Select Class");
@@ -106,8 +108,8 @@ public class SelectClass extends JFrame {
 				int index = table.getSelectedRow();
 				if (index>=0){
 					String id = table.getValueAt(index, 0).toString();
-					//String subject = (String) table.getValueAt(index, 1);
-					((AddStudent) submain).setId(id);
+					String subject = (String) table.getValueAt(index, 1);
+					((SelectableClass) submain).setClassDetails(id, subject, "");
 					submain.setVisible(true);
 					win.dispose();
 				}else{
